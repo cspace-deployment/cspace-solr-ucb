@@ -112,8 +112,9 @@ else
   gzip -f ${CSVFILE}
   mv ${CSVFILE}.gz ${TEMP_DIR}
   ##############################################################################
-  # send the errors off to be dealt with, etc.
+  # deal with statistics: move counts to apache public dir, email the errors off
   ##############################################################################
+  cp ${TENANT}.counts.*.csv /var/www/static
   tar -czf counts.tgz ${TENANT}.counts.*.csv
   ../common/make_error_report.sh | mail -r "cspace-support@lists.berkeley.edu" -A counts.tgz -s "${TENANT} ${FILE_PART} Solr Refresh: Counts and Errors `date`" ${CONTACT}
 fi

@@ -18,14 +18,13 @@ SOLRETLDIR=${HOME}/solrdatasources
 SOLR_REPO=${HOME}/cspace-solr-ucb
 ENVIRONMENT=$2
 # check to see we are plausibly able to do something...
-
-cd ${SOLR_REPO}
-
 if [ ! -d ${SOLR_REPO} ]
 then
    echo "Solr repo ${SOLR_REPO} not found in this directory. Please clone into home dir from GitHub."
    exit 1
 fi
+
+cd ${SOLR_REPO}
 
 # deploy fresh code from github
 git checkout main
