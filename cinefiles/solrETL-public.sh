@@ -9,7 +9,7 @@ source ${HOME}/pipeline-config.sh
 TENANT=$1
 CORE=public
 SERVER="${CINEFILES_SERVER}"
-USERNAME="reporter_${TENANT}"
+USERNAME="${CINEFILES_USER}"
 DATABASE="${TENANT}_domain_${TENANT}"
 CONNECTSTRING="host=$SERVER dbname=$DATABASE sslmode=prefer"
 CONTACT="${CINEFILES_CONTACT}"

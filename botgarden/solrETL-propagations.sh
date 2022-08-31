@@ -9,7 +9,7 @@ source ${HOME}/pipeline-config.sh
 TENANT=$1
 CORE=propagations
 SERVER="${BOTGARDEN_SERVER}"
-USERNAME="reporter_${TENANT}"
+USERNAME="${BOTGARDEN_USER}"
 DATABASE="${TENANT}_domain_${TENANT}"
 CONNECTSTRING="host=$SERVER dbname=$DATABASE sslmode=prefer"
 CONTACT="${BOTGARDEN_CONTACT}"

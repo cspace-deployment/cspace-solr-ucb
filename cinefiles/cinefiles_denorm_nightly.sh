@@ -18,7 +18,7 @@ source ${HOME}/pipeline-config.sh
 
 export BASEDIR=${HOME}/solrdatasources/cinefiles
 export SCRIPTDIR=$BASEDIR/scripts
-export PGUSER=nuxeo_cinefiles
+export PGUSER="${CINEFILES_PGUSER}"
 export PGDATABASE=cinefiles_domain_cinefiles
 export PGHOST="${CINEFILES_PGHOST}"
 export PGPORT="${CINEFILES_PGPORT}"

@@ -9,7 +9,7 @@ source ${HOME}/pipeline-config.sh
 TENANT=$1
 CORE=media
 SERVER="${UCJEPS_SERVER}"
-USERNAME="reporter_${TENANT}"
+USERNAME="${UCJEPS_USER}"
 DATABASE="${TENANT}_domain_${TENANT}"
 CONNECTSTRING="host=$SERVER dbname=$DATABASE sslmode=prefer"
 CONTACT="${UCJEPS_CONTACT}"
