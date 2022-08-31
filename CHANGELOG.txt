@@ -3,11 +3,15 @@ CHANGELOG for cspace-solr-ucb
 OK, it is not a *real* change log, but a list of changes resulting from git log
 sometimes with some human annotation after the fact.
 
-This is version 6.4.0-rc3
-Wed Jul  6 15:26:54 PDT 2022
+This is version 6.4.0-rc4
+Wed Aug 31 10:12:33 PDT 2022
 
-0bbd6b9 (HEAD -> main) CSW-634: set_platform.sh should be executable, though in fact it is only 'source'd
-824678f (tag: 6.4.0-rc2, origin/main, origin/HEAD) revise CHANGELOG.txt and bump version to 6.4.0-rc2
+145e692 (HEAD -> main, origin/main, origin/HEAD) CSW-724: add tenant-specific database role names to solr pipeline config
+459d3e2 CSW-724: remove unneeded cinefiles denorm config files
+bfda59e CSW-724: cd to solr repo has to come after check for existence
+ceb6efa (tag: 6.4.0-rc3) revise CHANGELOG.txt and bump version to 6.4.0-rc3
+0bbd6b9 CSW-634: set_platform.sh should be executable, though in fact it is only 'source'd
+824678f (tag: 6.4.0-rc2) revise CHANGELOG.txt and bump version to 6.4.0-rc2
 6db8c1e CSW-634: update app_cspace crontab to match other changes
 af82e8b CSW-634: merge config for cinefiles denorm into solr pipeline config
 85dd534 (tag: 6.4.0-rc1) revise CHANGELOG.txt and bump version to 6.4.0-rc1
