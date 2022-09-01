@@ -24,7 +24,7 @@ do
            fi
            if [ "-v" == "$1" ] || [ "${STATUS}" == "PROBLEM" ]
            then
-               echo "${STATUS}: $CORE,$DATE,$NUMFOUND $STATUS"
+               echo "${STATUS}: $CORE,$DATE,$NUMFOUND"
                cat ${t}.discrepancies.txt
            fi
            rm ${t}.discrepancies.txt
