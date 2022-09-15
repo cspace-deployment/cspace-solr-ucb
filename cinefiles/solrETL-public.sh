@@ -66,6 +66,9 @@ do
 done
 wait
 # tidy up a bit
+# check high water mark for storage use; get rid of intermediate files
+##############################################################################
+../common/check_space.sh
 rm d?.csv m1.csv header4Solr.csv
 ##############################################################################
 # first, however, save (hide) the 'films' file

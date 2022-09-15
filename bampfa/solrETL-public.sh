@@ -49,8 +49,9 @@ time python3 computeTimeIntegersBAMPFA.py d8.csv 4solr.${TENANT}.${CORE}.csv
 ##############################################################################
 # OK, we are good to go! clear out the existing data and reload
 ##############################################################################
-# get rid of intermediate files
+# check high water mark for storage use; get rid of intermediate files
 ##############################################################################
+../common/check_space.sh
 rm d?.csv m?.csv b?.csv media.csv metadata.csv header4Solr.csv
 # note: current location, current crate, appraised values have all been redacted
 # in the sql queries themselves.

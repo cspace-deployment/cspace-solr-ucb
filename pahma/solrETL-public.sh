@@ -158,11 +158,12 @@ cat header4Solr.csv d8.csv | perl -pe 's/␥/|/g' > d9.csv
 ##############################################################################
 time python3 computeTimeIntegers.py d9.csv 4solr.${TENANT}.internal.csv
 ##############################################################################
-# get rid of intermediate files
+# check high water mark for storage use; get rid of intermediate files
 ##############################################################################
+../common/check_space.sh
 rm d?.csv d6?.csv part*.csv temp.*.csv basic*.csv header4Solr.csv
 ##############################################################################
-# save (hide) the internal extract so that the internal script can find it
+# save (hide) the internal extract so that the internal pipeline can find it
 ##############################################################################
 gzip 4solr.${TENANT}.internal.csv
 ##############################################################################

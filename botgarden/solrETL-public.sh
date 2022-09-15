@@ -100,11 +100,12 @@ time python3 computeTimeIntegers.py d10.csv 4solr.${TENANT}.${CORE}.csv
 # shorten this one long org name...
 perl -i -pe 's/International Union for Conservation of Nature and Natural Resources/IUCN/g' 4solr.${TENANT}.${CORE}.csv
 ##############################################################################
-# get rid of intermediate files
+# check high water mark for storage use; get rid of intermediate files
 ##############################################################################
+../common/check_space.sh
 rm -f d?.csv d??.csv
 ##############################################################################
-# save (hide) files needed for the internal core so that the internal script can find them
+# save (hide) files needed for the internal core so that the internal pipeline can find them
 ##############################################################################
 gzip 4solr.${TENANT}.media.csv
 gzip ${CORE}.metadata.csv

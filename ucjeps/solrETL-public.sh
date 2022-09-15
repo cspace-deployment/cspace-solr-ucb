@@ -73,7 +73,9 @@ perl -i -pe 's/\\/\//g;s/\t"/\t/g;s/"\t/\t/g;s/\"\"/"/g' 4solr.${TENANT}.${CORE}
 ##############################################################################
 # OK, we are good to go! clear out the existing data and reload
 ##############################################################################
-# get rid of intermediate files
+# check high water mark for storage use; get rid of intermediate files
+##############################################################################
+../common/check_space.sh
 rm d?.csv metadata.csv media.csv
 # first hide these two files so zapCoords.sh can find and use them
 cp ucjeps.counts.errors_in_latlong.csv temp.counts.txt
