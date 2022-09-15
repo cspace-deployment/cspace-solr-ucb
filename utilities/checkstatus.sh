@@ -14,12 +14,13 @@ do
        if [[ -e ${LOG} ]]
        then
            CORE="${t}-${d}"
+           grep "`tail -1 $LOG | cut -c2-13`" $LOG > ${SOLR_LOG_DIR}/${t}.${d}.latest.log
            # TODO this 'error detection code' could still be a lot better!
-           grep "`tail -1 $LOG | cut -c2-11`" $LOG | perl -ne 'print if /(ERROR\b|refresh aborted)/i' > ${t}.${d}.discrepancies.txt
+           perl -ne 'print if /(ERROR\b|refresh aborted)/i' ${SOLR_LOG_DIR}/${t}.${d}.latest.log > ${SOLR_LOG_DIR}/${t}.${d}.discrepancies.log
            DATE=`tail -1 ${LOG} | perl -ne 'if (/(Sun|Mon|Tue|Wed|Thu|Fri|Sat)/){print}else{print "PROBLEM: log file does not show a date as last line"}'`
            NUMFOUND=`curl -s -S "http://localhost:8983/solr/${t}-${d}/select?q=*%3A*&rows=0&wt=json&indent=true" | grep numFound | perl -pe 's/.*"numFound":(\d+),.*/\1 rows/;'`
            SOLR_STATUS=`grep '"status":' $LOG | tail -1 | perl -ne 'unless (/.status.:0/) {print "\nNon-zero status from Solr:\n$_"}'`
-           if [ `echo "$DATE" | grep -q "PROBLEM"` ] || [ "$SOLR_STATUS" != "" ] || [ -s ${t}.${d}.discrepancies.txt ]
+           if [[ "$DATE" == *"PROBLEM"* ]] || [ "$SOLR_STATUS" != "" ] || [ -s ${SOLR_LOG_DIR}/${t}.${d}.discrepancies.log ]
            then
                STATUS="PROBLEM"
            else
@@ -28,9 +29,9 @@ do
            if [ "-v" == "$1" ] || [ "${STATUS}" == "PROBLEM" ]
            then
                echo "${STATUS}: $CORE,$DATE,$NUMFOUND"
-               cat ${t}.${d}.discrepancies.txt
+               cat ${SOLR_LOG_DIR}/${t}.${d}.discrepancies.log
            fi
-           rm ${t}.${d}.discrepancies.txt
+           #rm ${SOLR_LOG_DIR}/${t}.${d}.discrepancies.log ${SOLR_LOG_DIR}/${t}.${d}.latest.log
        fi
     done
 done
