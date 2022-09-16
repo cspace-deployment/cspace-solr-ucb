@@ -132,13 +132,7 @@ select
         where h5int.name=h1.name order by hlg2.pos), '␥', '') as alllocalities_ss,
   CASE WHEN (tsg.typespecimenbasionym IS NOT NULL AND tsg.typespecimenbasionym <>'') THEN 'yes' ELSE 'no' END as hastypeassertions_s,
   tig.qualifier as determinationqualifier_s,
-  array_to_string(array
-      (SELECT com.item
-       FROM collectionobjects_common cc
-       inner join hierarchy h6int on cc.id = h6int.id
-       JOIN collectionobjects_common_comments com ON (com.id=cc.id AND com.pos IS NOT NULL)
-       where h6int.name = h1.name),
-       '␥', '') AS comments_ss,
+  com.item AS comments_ss,
   co.numberOfObjects AS numberofobjects_s,
   conh.objectCountNumber AS objectcount_s,
   CASE WHEN (co.numberOfObjects > 0 and conh.objectCountNumber > 0) THEN
