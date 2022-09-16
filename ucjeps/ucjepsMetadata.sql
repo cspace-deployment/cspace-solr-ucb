@@ -132,7 +132,12 @@ select
         where h5int.name=h1.name order by hlg2.pos), '␥', '') as alllocalities_ss,
   CASE WHEN (tsg.typespecimenbasionym IS NOT NULL AND tsg.typespecimenbasionym <>'') THEN 'yes' ELSE 'no' END as hastypeassertions_s,
   tig.qualifier as determinationqualifier_s,
-  com.item AS comments_ss,
+  array_to_string(array
+      (SELECT com.item
+       FROM collectionobjects_common co6
+       JOIN collectionobjects_common_comments com ON (com.id = co6.id AND com.pos IS NOT NULL)
+       where co6.id = co.id order by com.pos),
+       '¥', '') AS comments_ss,
   co.numberOfObjects AS numberofobjects_s,
   conh.objectCountNumber AS objectcount_s,
   CASE WHEN (co.numberOfObjects > 0 and conh.objectCountNumber > 0) THEN
@@ -168,7 +173,6 @@ left outer join hierarchy httg on (
     tc.id = httg.parentid
     and httg.name = 'taxon_common:taxonTermGroupList'
     and httg.pos = 0)
-left outer join collectionobjects_common_comments com ON (com.id = cc.id and com.pos = 0)
 
 inner join hierarchy h2int on co.id = h2int.id and h2int.name = h1.name
 left outer join hierarchy htsg on (co.id = htsg.parentid and htsg.pos = 0
