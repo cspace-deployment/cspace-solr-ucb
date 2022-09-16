@@ -3,10 +3,12 @@ CHANGELOG for cspace-solr-ucb
 OK, it is not a *real* change log, but a list of changes resulting from git log
 sometimes with some human annotation after the fact.
 
-This is version 6.4.0-rc5
-Thu Sep 15 11:24:50 PDT 2022
+This is version 6.4.0-rc6
+Fri Sep 16 15:01:53 PDT 2022
 
-e133943 (HEAD -> main, origin/main, origin/HEAD) CSW-731: checkstatus.sh now puts its output in SOLR_LOG_DIR, where it belongs
+ad42428 (HEAD -> main, origin/main, origin/HEAD) CSW-726: revise ucjeps metadata query so it works with lyrasis hosting
+c310011 (tag: 6.4.0-rc5) revise CHANGELOG.txt and bump version to 6.4.0-rc5
+e133943 CSW-731: checkstatus.sh now puts its output in SOLR_LOG_DIR, where it belongs
 3ea78cb CSW-733: add storage and 'high watermark' checks to solr pipelines
 dfe0cb3 CSW-731: rename discrepancy report in checkstatus.sh
 f067cba CSW-731: eliminate some false negatives from checkstatus.sh
