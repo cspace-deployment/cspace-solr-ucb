@@ -63,7 +63,7 @@ select
         left outer join taxonomicIdentGroup tig2 on (tig2.id = htig2.id)
         left outer join hierarchy hprevdet on (tig2.id = hprevdet.parentid and hprevdet.name = 'identDateGroup')
         left outer join structureddategroup prevdetsdg on (prevdetsdg.id = hprevdet.id)
-       where h1int.name=h1.name order by htig2.pos), 'â¥', '') previousdeterminations_ss,
+       where h1int.name=h1.name order by htig2.pos), '␥', '') previousdeterminations_ss,
     lng.localname as localname_s,
     case when cocbd.item is null or cocbd.item = '' then null else cocbd.item end as briefdescription_s,
     lg.vdepth as depth_s,
@@ -79,7 +79,7 @@ select
         and hatg.name = 'collectionobjects_naturalhistory:associatedTaxaGroupList')
       left outer join associatedtaxagroup atg on (hatg.id = atg.id)
       where h4int.name = h1.name
-      order by hatg.pos), 'â¥', '') as associatedtaxa_ss,
+      order by hatg.pos), '␥', '') as associatedtaxa_ss,
     array_to_string(array
       (SELECT CASE WHEN (tsg.typespecimenkind IS NOT NULL AND tsg.typespecimenkind <>'') THEN (tsg.typespecimenkind
 	||CASE WHEN (tsg.typespecimenbasionym IS NOT NULL AND tsg.typespecimenbasionym <>'') THEN ' (' || getdispl(tsg.typespecimenbasionym)||')' ELSE '' END) ELSE '' END
@@ -89,7 +89,7 @@ select
         and htsg.name = 'collectionobjects_naturalhistory:typeSpecimenGroupList')
        left outer join typespecimengroup tsg on (tsg.id = htsg.id)
        where h2int.name = h1.name
-       order by htsg.pos), 'â¥', '') as typeassertions_ss,
+       order by htsg.pos), '␥', '') as typeassertions_ss,
     case when conh.cultivated is null or conh.cultivated = '' then null else conh.cultivated end as Cultivated_s,
     case when co.sex is null or co.sex = '' then null else co.sex end as sex_s,
     regexp_replace(co.phase, '^.*\)''(.*)''$', '\1') as phase_s,
@@ -102,7 +102,7 @@ select
          and hong.name = 'collectionobjects_common:otherNumberList')
        left outer join othernumber ong on (ong.id = hong.id)
        where h3int.name = h1.name
-       order by hong.pos), 'â¥', '') as othernumber_ss,
+       order by hong.pos), '␥', '') as othernumber_ss,
     'ucbgacccession' as ucbgaccessionnumber_s,
     CASE WHEN (tig.identby IS NOT NULL AND tig.identby <>'' and tig.identby not like '%unknown%') THEN (getdispl(tig.identby)
 	||CASE WHEN (tig.institution IS NOT NULL AND tig.institution <>'') THEN ', ' || getdispl(tig.institution) ELSE '' END
@@ -121,7 +121,7 @@ select
 	      left outer join hierarchy hlg2 on (co5.id = hlg2.parentid and hlg2.pos > 0
 	      and hlg2.name = 'collectionobjects_naturalhistory:localityGroupList')
 	      left outer join localityGroup lg2 on (lg2.id = hlg2.id)
-        where h5int.name=h1.name order by hlg2.pos), 'â¥', '') as otherlocalities_ss,
+        where h5int.name=h1.name order by hlg2.pos), '␥', '') as otherlocalities_ss,
   array_to_string(array
       (SELECT CASE WHEN (lg2.fieldlocverbatim IS NOT NULL AND lg2.fieldlocverbatim <>'' and lg2.fieldlocverbatim not like '%unknown%') THEN (getdispl(lg2.fieldlocverbatim)) ELSE '' END
         from collectionobjects_common co5
@@ -129,14 +129,14 @@ select
 	      left outer join hierarchy hlg2 on (co5.id = hlg2.parentid and hlg2.pos >= 0
 	      and hlg2.name = 'collectionobjects_naturalhistory:localityGroupList')
 	      left outer join localityGroup lg2 on (lg2.id = hlg2.id)
-        where h5int.name=h1.name order by hlg2.pos), 'â¥', '') as alllocalities_ss,
+        where h5int.name=h1.name order by hlg2.pos), '␥', '') as alllocalities_ss,
   CASE WHEN (tsg.typespecimenbasionym IS NOT NULL AND tsg.typespecimenbasionym <>'') THEN 'yes' ELSE 'no' END as hastypeassertions_s,
   tig.qualifier as determinationqualifier_s,
   array_to_string(array
       (SELECT com.item
        FROM collectionobjects_common_comments com 
        WHERE com.id = co.id AND com.pos IS NOT NULL
-       ORDER BY com.pos), 'â¥', '') AS comments_ss,
+       ORDER BY com.pos), '␥', '') AS comments_ss,
   co.numberOfObjects AS numberofobjects_s,
   conh.objectCountNumber AS objectcount_s,
   CASE WHEN (co.numberOfObjects > 0 and conh.objectCountNumber > 0) THEN
@@ -195,4 +195,3 @@ where substring(co.objectnumber from '^[A-Z]*') not in ('DHN', 'UCSB', 'UCSC')
 -- and h1.name = '32328608-467e-46c3-875c-6de0cece0be0'
 -- and h1.name = '33803cfe-e6a8-4025-bf53-a3814cf4da82'	-- JEPS105623
 -- and h1.name = '0ad96db0-be78-4a0b-8f99-9fb229222ffb'	-- JEPS70526
-
