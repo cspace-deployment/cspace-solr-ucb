@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-echo "Solr Pipeline Discrepancies, checked  on `date`"
-echo
+# echo "Solr Pipeline Discrepancies, checked  on `date`"
+# echo
 
 cd
 source ${HOME}/pipeline-config.sh -q
