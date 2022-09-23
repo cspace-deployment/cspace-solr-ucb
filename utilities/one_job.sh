@@ -36,12 +36,13 @@ echo 'starting solr refresh' `date` >> ${SOLR_LOG_DIR}/refresh.log
 wait
 ##################################################################################
 # optimize all solrcores after refresh
+# (nb: this seems to do little after solr v8, but leaving this here as a
+# reminder to posterity that perhaps someday it might be useful again.
 ##################################################################################
-${HOME}/optimize.sh > ${SOLR_LOG_DIR}/optimize.log
+# ${HOME}/optimize.sh > ${SOLR_LOG_DIR}/optimize.log
 ##################################################################################
 # monitor solr datastores
 ##################################################################################
 if [[ `${HOME}/checkstatus.sh` ]] ; then ${HOME}/checkstatus.sh -v | mail -r "cspace-support@lists.berkeley.edu" -s "PROBLEM with solr refresh nightly refresh" -- ${SUPPORT_CONTACT} ; fi
 ${HOME}/checkstatus.sh -v >> ${SOLR_LOG_DIR}/refresh.log
 echo 'done with solr refresh' `date` >> ${SOLR_LOG_DIR}/refresh.log
-
