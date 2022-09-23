@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# for qa and dev deployments, we send notification email to nobody
+# for dev deployments, we send notification email to nobody
 
 export BAMPFA_SERVER="dba-postgres-dev-45.ist.berkeley.edu port=5114"
 export BAMPFA_USER="reporter_bampfa"
