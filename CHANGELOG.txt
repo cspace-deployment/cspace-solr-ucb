@@ -3,10 +3,11 @@ CHANGELOG for cspace-solr-ucb
 OK, it is not a *real* change log, but a list of changes resulting from git log
 sometimes with some human annotation after the fact.
 
-This is version 6.4.0-rc7
-Fri Sep 23 14:59:41 PDT 2022
+This is version 6.4.0
+Wed Oct  5 19:31:17 PDT 2022
 
-1add9d2 (HEAD -> main, origin/main, origin/HEAD) CSW-722: 'optimize.sh' seems not to do much since solr v8. stop running it
+7d498e4 (HEAD -> main, tag: 6.4.0-rc7, origin/main, origin/HEAD) revise CHANGELOG.txt and bump version to 6.4.0-rc7
+1add9d2 CSW-722: 'optimize.sh' seems not to do much since solr v8. stop running it
 df4c7ab CSW-635: we now stop running cinefiles denorm pipeline
 236a74e CSW-738: checkstatus.sh needs to be completely quiet if everything is ok
 e0132bb CSW-772: commit config for solr pointing to lyrasis qa, for reference
