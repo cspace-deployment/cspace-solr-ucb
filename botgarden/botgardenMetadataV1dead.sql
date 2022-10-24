@@ -119,7 +119,9 @@ FROM taxon_common tcx
                         AND rcx.objectcsid = hx2.name)
   LEFT OUTER JOIN taxon_common tcx2 ON (tcx2.id = hx2.id)
 
-WHERE tcx.refname = tn.family and tcx2.taxonrank = 'division') as division_s
+WHERE tcx.refname = tn.family and tcx2.taxonrank = 'division') as division_s,
+
+to_char(cob.deaddate, 'YYYY-MM-DD') as deaddate_s
 
 from collectionobjects_common co
 inner join misc on (co.id = misc.id and misc.lifecyclestate <> 'deleted')
