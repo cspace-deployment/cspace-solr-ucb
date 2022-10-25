@@ -66,3 +66,4 @@ alldeterminations_ss
 habit_s
 materialtype_s
 sex_s
+deaddate_s
