@@ -3,10 +3,13 @@ CHANGELOG for cspace-solr-ucb
 OK, it is not a *real* change log, but a list of changes resulting from git log
 sometimes with some human annotation after the fact.
 
-This is version 6.5.0-rc1
-Fri Oct 21 09:05:22 PDT 2022
+This is version 2.4.1
+Thu Nov  3 13:20:55 PDT 2022
 
-9367f08 (HEAD -> main, tag: 6.4.0, origin/main, origin/HEAD) revise CHANGELOG.txt and bump version to 6.4.0
+2731736 (HEAD -> main, origin/main, origin/HEAD) CSW-728: add deaddate_s to botgarden keyword (_txt) fields in solr schema
+c3597f3 CSW-728: add 'dead date' to botgarden solr cores
+6e85267 revise CHANGELOG.txt and bump version to 6.5.0-rc1
+9367f08 (tag: 6.4.0) revise CHANGELOG.txt and bump version to 6.4.0
 7d498e4 revise CHANGELOG.txt and bump version to 6.4.0-rc7
 1add9d2 CSW-722: 'optimize.sh' seems not to do much since solr v8. stop running it
 df4c7ab CSW-635: we now stop running cinefiles denorm pipeline
