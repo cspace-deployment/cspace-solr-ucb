@@ -111,17 +111,7 @@ case when cocbd.item is null or cocbd.item = '' then null else cocbd.item end as
 case when co.sex is null or co.sex = '' then null else co.sex end as sex_s,
 left(con.provenancetype,1) as provenancetype_short_s,
 
-(SELECT
-  regexp_replace(tcx2.refname, '^.*\)''(.*)''$', '\1') broadertaxon
-FROM taxon_common tcx
-  INNER JOIN misc mx ON (tcx.id=mx.id AND mx.lifecyclestate<>'deleted')
-  LEFT OUTER JOIN hierarchy hx ON (tcx.id = hx.id AND hx.primarytype like 'Taxon%')
-  LEFT OUTER JOIN relations_common rcx ON (hx.name = rcx.subjectcsid)
-  LEFT OUTER JOIN hierarchy hx2 ON (hx2.primarytype like 'Taxon%'
-                        AND rcx.objectcsid = hx2.name)
-  LEFT OUTER JOIN taxon_common tcx2 ON (tcx2.id = hx2.id)
-
-WHERE tcx.refname = tn.family and tcx2.taxonrank = 'division') as division_s,
+findparentbyrank(tc.id, 'division') as division_s,
 
 to_char(cob.deaddate, 'YYYY-MM-DD') as deaddate_s
 
