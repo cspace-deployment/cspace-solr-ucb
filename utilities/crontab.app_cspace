@@ -34,9 +34,9 @@
 ##################################################################################
 3 7-22 * * 1-5 cd /cspace/batch_barcode ; ./tricoderlock.sh > /dev/null 2>&1
 ##################################################################################
-# refresh the denormalized hierarchies
+# refresh the denormalized hierarchies (now run by LYRASIS)
 ##################################################################################
-01 01 * * * ${HOME}/bin/hierarchies/refresh.sh > /dev/null 2>&1
+# 01 01 * * * ${HOME}/bin/hierarchies/refresh.sh > /dev/null 2>&1
 ##################################################################################
 # tidy up the blacklight databases every early monday
 ##################################################################################
