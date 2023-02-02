@@ -11,16 +11,12 @@
 ##################################################################################
 # run BMU batch jobs (nightly or twice a day depending)
 ##################################################################################
-# run BMUs (sequentially, starting ten minutes after 7pm)
+# run BMUs (sequentially, starting one minute after 7pm)
 10 19 * * * ${HOME}/bin/bmu-run.sh > /dev/null 2>&1
 ##################################################################################
 # BMU monitoring / report (i.e. send nightly emails)
 ##################################################################################
 10 05 * * * ${HOME}/bin/bmu-monitor.sh
-##################################################################################
-# keep a set of the BMU log files
-##################################################################################
-5 6 * * *  for t in bampfa botgarden cinefiles pahma ucjeps; do cp -p /cspace/bmu/${t}/*.csv /cspace/monitor/image_upload_cache_${t}/ > /dev/null 2>&1 ; cp -p /cspace/bmu/${t}/*.trace.log /cspace/monitor/image_upload_cache_${t}/ > /dev/null 2>&1 ; done
 ##################################################################################
 # start the solr pipelines at 1 minute after midnight daily (takes 2 hours or so)
 ##################################################################################
@@ -34,9 +30,9 @@
 ##################################################################################
 3 7-22 * * 1-5 cd /cspace/batch_barcode ; ./tricoderlock.sh > /dev/null 2>&1
 ##################################################################################
-# refresh the denormalized hierarchies (now run by LYRASIS)
+# check the denormalized pahma hierarchies, send email
 ##################################################################################
-# 01 01 * * * ${HOME}/bin/hierarchies/refresh.sh > /dev/null 2>&1
+01 01 * * * source ${HOME}/pipeline-config.sh ; cd ${HOME}/cspace-utils-ucb/pahma ; psql -h localhost -p 54321 -U pahma -d pahma_domain_pahma -f checkstatus.sql | mail -r cspace-support@lists.berkeley.edu -s "hierarchies refresh" "${PAHMA_CONTACT}"
 ##################################################################################
 # tidy up the blacklight databases every early monday
 ##################################################################################
