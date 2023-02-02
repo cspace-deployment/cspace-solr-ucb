@@ -3,6 +3,8 @@ objsortnum_s
 objmusno_s
 objdept_s
 objtype_s
+objobjectclass_ss
+objobjectclasstree_ss
 objcountnote_s
 objkeelingser_s
 objfcpverbatim_s
@@ -42,3 +44,5 @@ objpersondepicted_ss
 media_available_ss
 mimetypes_ss
 loan_info_ss
+anthropologyplaceowner_s
+anthropologyplaceownershipnote_s
