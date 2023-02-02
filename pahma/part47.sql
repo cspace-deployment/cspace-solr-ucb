@@ -1,6 +1,6 @@
 SELECT cc.id,
-    REGEXP_REPLACE(pog.anthropologyplaceowner, '^.*item:name\((.*?)\)''.*', '\1') as anthropologyplaceowner_s,
-       pog.anthropologyplaceownershipnote as anthropologyplaceownershipnote_s
+       REGEXP_REPLACE(pog.anthropologyplaceowner, '^.*\)''(.*)''$', '\1') as anthropologyplaceowner_s,
+       pog.anthropologyplaceownershipnote                                 as anthropologyplaceownershipnote_s
 FROM collectionobjects_common cc
          JOIN collectionobjects_pahma_pahmafieldcollectionplacelist fcp
               ON (fcp.id = cc.id AND (fcp.pos = 0 OR fcp.pos IS NULL))
