@@ -76,6 +76,7 @@ perl -i -pe 's/\\/\//g;s/\t"/\t/g;s/"\t/\t/g;s/\"\"/"/g' 4solr.${TENANT}.${CORE}
 # check high water mark for storage use; get rid of intermediate files
 ##############################################################################
 ../common/check_space.sh
+gzip -c media.csv > ${SOLR_CACHE_DIR}/4solr.ucjeps.allmedia.csv.gz
 rm d?.csv metadata.csv media.csv
 # first hide these two files so zapCoords.sh can find and use them
 cp ucjeps.counts.errors_in_latlong.csv temp.counts.txt
