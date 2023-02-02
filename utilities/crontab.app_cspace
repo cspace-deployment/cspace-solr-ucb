@@ -11,7 +11,7 @@
 ##################################################################################
 # run BMU batch jobs (nightly or twice a day depending)
 ##################################################################################
-# run BMUs (sequentially, starting one minute after 7pm)
+# run BMUs (sequentially, starting ten minutes after 7pm)
 10 19 * * * ${HOME}/bin/bmu-run.sh > /dev/null 2>&1
 ##################################################################################
 # BMU monitoring / report (i.e. send nightly emails)
