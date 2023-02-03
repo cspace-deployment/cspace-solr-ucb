@@ -3,10 +3,20 @@ CHANGELOG for cspace-solr-ucb
 OK, it is not a *real* change log, but a list of changes resulting from git log
 sometimes with some human annotation after the fact.
 
-This is version 6.4.2-rc1
-Thu Dec  1 14:39:03 PST 2022
+This is version 6.4.2-rc2
+Thu Feb  2 17:10:04 PST 2023
 
-a23c305 (HEAD -> main, origin/main, origin/HEAD) CSW-720: revise ucbg solr queries to correctly calculate Division ranks
+35ce293 (HEAD -> main) CSW-800: initial attempt at 'nagpra repatriation filter'
+3ccf0a9 (origin/main, origin/HEAD) HMP-271: check pahma hierarchies refresh status, send email
+bc548bb HMP-266: revise object class query part47.sql a bit
+ee01db7 CSW-799: keep media extract from Solr pipeline for use in Merritt Archiving
+42bd4ef NOJIRA: correct inline documentation about bmu start times
+92c04c6 CSW-775: queries and supporting code for Object Class in PAHMA Solr cores
+a5d2b81 CSW-798: changes to enable solr core updates like these
+da2399e NOJIRA: comment out hierarchies refresh in blacklight stack cron job(s)
+87f336c CSW-779: update pipeline config for prod to point to lyrasis databases
+0954e69 (tag: 6.4.2-rc1) revise CHANGELOG.txt and bump version to 6.4.2-rc1
+a23c305 CSW-720: revise ucbg solr queries to correctly calculate Division ranks
 8000096 (tag: 6.4.1) revise CHANGELOG.txt and bump version to 6.4.1
 0bf0c9f revise CHANGELOG.txt and bump version to 2.4.1
 2731736 CSW-728: add deaddate_s to botgarden keyword (_txt) fields in solr schema
