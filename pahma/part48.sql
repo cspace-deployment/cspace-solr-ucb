@@ -1,5 +1,5 @@
 SELECT cc.id,
-       'nagpra' as nagpra_relevant_s
+       'eligible' as nagpra_relevant_s
 FROM collectionobjects_common cc
 	LEFT OUTER JOIN collectionobjects_pahma_pahmaobjectstatuslist osl ON (cc.id=osl.id)
 	JOIN misc m ON (m.id=cc.id AND m.lifecyclestate='project')
