@@ -3,11 +3,13 @@ CHANGELOG for cspace-solr-ucb
 OK, it is not a *real* change log, but a list of changes resulting from git log
 sometimes with some human annotation after the fact.
 
-This is version 6.4.2-rc2
-Thu Feb  2 17:10:04 PST 2023
+This is version 6.4.2-rc3
+Thu Feb  2 17:18:59 PST 2023
 
-35ce293 (HEAD -> main) CSW-800: initial attempt at 'nagpra repatriation filter'
-3ccf0a9 (origin/main, origin/HEAD) HMP-271: check pahma hierarchies refresh status, send email
+0c98329 (HEAD -> main) CSW-800: mtb's version of 'nagpra repatriation filter'
+700516e (tag: 6.4.2-rc2, origin/main, origin/HEAD) revise CHANGELOG.txt and bump version to 6.4.2-rc2
+35ce293 CSW-800: initial attempt at 'nagpra repatriation filter'
+3ccf0a9 HMP-271: check pahma hierarchies refresh status, send email
 bc548bb HMP-266: revise object class query part47.sql a bit
 ee01db7 CSW-799: keep media extract from Solr pipeline for use in Merritt Archiving
 42bd4ef NOJIRA: correct inline documentation about bmu start times
