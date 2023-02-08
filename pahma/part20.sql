@@ -1,6 +1,6 @@
 SELECT cc.id,
        CASE
-           WHEN STRING_AGG(DISTINCT REGEXP_REPLACE(osl.item, '^.*\)''(.*)''$', '\1'), '␥') ~ '(deaccessioned|transferred|repatriated|sold|exchanged|discarded|red-lined|destroyed)'
+           WHEN STRING_AGG(DISTINCT REGEXP_REPLACE(osl.item, '^.*\)''(.*)''$', '\1'), '␥') ~ '(^deaccessioned|transferred|repatriated|sold|exchanged|discarded|red-lined|destroyed)'
            THEN
                'Deaccessioned'
            ELSE
