@@ -26,11 +26,11 @@ is that it minimizes the total elapsed time and eliminates any chance of the job
 NB: as of November 2019, the 13 core refreshes take about 3 hours to run sequentially.
 
 tS.py is a short script to test the (local) installation of the Python solr
-client module and operation of the (local) solr server. To run:
+client module and operation of the (local) solr server. To run (from the utilities directory in this repo):
 
 ```bash
-$ python3 tS.py pahma-public
-pahma-public, records found: 735314
+(venv) app_cspace@blacklight-qa:~/cspace-solr-ucb/utilities$ python3 tS.py pahma-public http://localhost:8983 "*:*"
+pahma-public, records found: 755201
 ```
 
 (NB: solr must be running on localhost:8983 and have a core with the specified name)
@@ -56,12 +56,7 @@ The following steps will setup the Solr ETL for UCB in ~APP_USER.
 
 NB:
 
-* There is an optional step to change the settings to point to Dev or QA instead of Prod.
-* This procedure _only_ deploys the ETL code on a managed server.
-it presumes that you have already installed and started Solr, and have
-configured the appropriate cores. (Installing Solr is an Ops task see the README.md in the `utilities` directory for
-how to do that.)
-* In general, development work on the Solr ETL is done on Dev and not one's local dev system: 
+* In general, development work on the Solr ETL is done on QA ("blacklight-qa") and not one's local dev system:
 running the SQL would require tunneling, and be very, very slow. One _could_, though!
 
 ```bash
@@ -70,9 +65,9 @@ ssh cspace-dev.cspace.berkeley.edu
 sudo su - APP_USER
 # assumes that Solr is up and running, see above
 git clone https://github.com/cspace-deployment/cspace-solr-ucb
-cspace-solr-ucb/utilities/redeploy-etl.sh
+./cspace-solr-ucb/utilities/redeploy-etl.sh
 #
-# To simply update the ETL code for a single tenant ON PROD, providing that the updated code is
+# To simply update the ETL code for a single tenant, providing that the updated code is
 # in GitHub already:
 #
 cd ~/cspace-solr-ucb
@@ -81,14 +76,6 @@ git pull -v
 git checkout A.B.C
 cp -r datasources/pahma/* ~/solrdatasources/pahma
 #
-# OPTIONAL STEPS:
-#
-# To make the prod scripts into dev or qa scripts:
-# ymmv! the following used to work (July 2019), but port number and hostnames are prone to change
-cd ~
-./switch2dev.sh
-#or
-./switch2qa.sh
 
 # setup pgpass, if it is not already set up.
 cat > .pgpass
@@ -104,8 +91,7 @@ To redeploy all pipeline code on any of the 3 RTL server (-dev, -qa, -prod):
 ```bash
 ssh ... to the server
 sudo su - APP_USER
-cspace-solr-ucb/utilities/redeploy-etl.sh 6.0.5-rc6
-cspace-solr-ucb/utilities/switch2dev.sh
+cspace-solr-ucb/utilities/redeploy-etl.sh 6.0.5-rc6 qa
 # to run all pipelines (a couple hours on dev)
 nohup ./one_job.sh &
 ```
