@@ -1,6 +1,7 @@
 SELECT cc.id,
        CASE
-           WHEN STRING_AGG(DISTINCT REGEXP_REPLACE(osl.item, '^.*\)''(.*)''$', '\1'), '␥') ~ '(^deaccessioned)'
+           WHEN STRING_AGG(DISTINCT REGEXP_REPLACE(osl.item, '^.*\)''(.*)''$', '\1'), '␥') ~ 'deaccessioned' AND
+                STRING_AGG(DISTINCT REGEXP_REPLACE(osl.item, '^.*\)''(.*)''$', '\1'), '␥') !~ 'partially deaccessioned'
            THEN
                'Deaccessioned'
            ELSE
