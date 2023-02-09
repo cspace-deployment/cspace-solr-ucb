@@ -3,14 +3,15 @@ CHANGELOG for cspace-solr-ucb
 OK, it is not a *real* change log, but a list of changes resulting from git log
 sometimes with some human annotation after the fact.
 
-This is version 6.4.2-rc4
-Thu Feb  9 08:53:08 PST 2023
+This is version 6.4.2
+Thu Feb  9 13:18:07 PST 2023
 
-b3f8e8e (HEAD -> main) CSW-764: use 'artist override' when computing artistcalc for bampfa solr pipelines
+ad28ca7 (HEAD -> main, tag: 6.4.2-rc4, origin/main, origin/HEAD) revise CHANGELOG.txt and bump version to 6.4.2-rc4
+b3f8e8e CSW-764: use 'artist override' when computing artistcalc for bampfa solr pipelines
 2993b2c CSW-803: further revisions to part20.sql to handle object status better
 78f8ac9 CSW-798, CSW-803: further revisions to part20.sql and part46.sql per mtb
 143fc2a NOJIRA: revide README.md for Solr pipelines
-4d1402f (origin/main, origin/HEAD) CSW-798: revisions to part20.sql and part48.sql (nagpra-oriented)
+4d1402f CSW-798: revisions to part20.sql and part48.sql (nagpra-oriented)
 a34f312 CSW-803: futher revisions to part46.sql (pahma object class)
 1ae13d5 CSW-800: use 'eligible' for single value of 'nagpra filter' value nagpra_relevant_s
 5bc429d (tag: 6.4.2-rc3) revise CHANGELOG.txt and bump version to 6.4.2-rc3
