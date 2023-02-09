@@ -4,7 +4,8 @@ select
    cb.sortableEffectiveObjectNumber sortObjectNumber,
    con.numbervalue otherNumber,
    utils.getdispl(cb.itemclass) itemclass,
-   utils.concat_artists(h1.name) artistCalc,
+   case when (cb.artistdisplayoverride is null or cb.artistdisplayoverride='') then utils.concat_artists(h1.name)
+     else cb.artistdisplayoverride end as artistCalc,
 --   getdispl(ba.bampfaobjectproductionperson) artist,
    case
      when (pc.birthplace is null or pc.birthplace='') then pcn.item
