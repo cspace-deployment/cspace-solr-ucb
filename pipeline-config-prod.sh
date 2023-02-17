@@ -14,7 +14,7 @@ export CINEFILES_CONTACT="mcq@berkeley.edu"
 
 export PAHMA_SERVER="localhost port=54321"
 export PAHMA_USER="pahma"
-export PAHMA_CONTACT="mtblack@berkeley.edu"
+export PAHMA_CONTACT="pahma-cspace-admin-notices@lists.berkeley.edu"
 
 export UCJEPS_SERVER="localhost port=54321"
 export UCJEPS_USER="ucjeps"
