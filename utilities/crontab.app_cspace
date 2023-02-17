@@ -44,4 +44,4 @@
 ##################################################################################
 # generate list of cspace users for verification, monthly. send email.
 ##################################################################################
-0  0  1 * * ${HOME}/cspace-utils-ucb/scripts/dump-users.sh rjaffe@berkeley.edu
+0  0  1 * * ${HOME}/cspace-utils-ucb/scripts/dump-users.sh rjaffe@berkeley.edu > /dev/null 2>&1
