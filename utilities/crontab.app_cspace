@@ -41,3 +41,7 @@
 # monitor webapp use, compute solr core stats, goaccess log analysis
 ##################################################################################
 05 04 * * * ${HOME}/bin/analytics.sh
+##################################################################################
+# generate list of cspace users for verification, monthly. send email.
+##################################################################################
+0  0  1 * * ${HOME}/cspace-utils-ucb/scripts/dump-users.sh rjaffe@berkeley.edu
