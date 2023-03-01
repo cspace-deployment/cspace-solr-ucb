@@ -20,6 +20,6 @@ export UCJEPS_SERVER="localhost port=54321"
 export UCJEPS_USER="ucjeps"
 export UCJEPS_CONTACT="ucjeps-it@berkeley.edu"
 
-export SUPPORT_CONTACT="cspace-support@berkeley.edu"
+export SUPPORT_CONTACT="cspace-support@lists.berkeley.edu"
 
 source ${HOME}/set_platform.sh
