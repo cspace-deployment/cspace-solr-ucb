@@ -38,9 +38,9 @@ cob.flowercolor as flowercolor_s,
 -- regexp_replace(tig2.taxon, '^.*\)''(.*)''$', '\1') as determinationNoAuth_s,
 regexp_replace(mc.reasonformove, '^.*\)''(.*)''$', '\1') as reasonformove_s,
 
-utils.findconserveinfo(tc.refname) as conservationinfo_ss,
-utils.findconserveorg(tc.refname) as conserveorg_ss,
-utils.findconservecat(tc.refname) as conservecat_ss,
+cons.conserveinfo as conservationinfo_ss,
+cons.conserveorg as conserveorg_ss,
+cons.conservecat as conservecat_ss,
 
 case when (utils.findvoucherinfo(h1.name) is not null)
      then 'yes' else 'no'
@@ -158,3 +158,18 @@ left outer join taxon_common tc on (tig.taxon=tc.refname)
 left outer join taxon_naturalhistory tn on (tc.id=tn.id)
 
 left outer join collectionobjects_common_briefdescriptions cocbd on (co.id = cocbd.id and cocbd.pos = 0)
+
+left outer join (
+        select tc.id,
+          string_agg(getdispl(pag.conservationcategory), '|' order by h.pos) as conservecat,
+          string_agg(getdispl(pag.conservationorganization) || ': ' || getdispl(pag.conservationcategory),
+            '|' order by h.pos) as conserveinfo,
+          string_agg(getdispl(pag.conservationorganization), '|' order by h.pos) as conserveorg
+        from taxon_common tc
+        join hierarchy h on (tc.id = h.parentid and h.name = 'taxon_naturalhistory:plantAttributesGroupList')
+        left outer join plantattributesgroup pag on (pag.id = h.id)
+        where pag.conservationcategory not like '%none%'
+        and pag.conservationorganization not like '%not applicable%'
+        group by tc.id
+) cons on (tc.id = cons.id)
+
