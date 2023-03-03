@@ -112,6 +112,7 @@ case when co.sex is null or co.sex = '' then null else co.sex end as sex_s,
 left(con.provenancetype,1) as provenancetype_short_s,
 
 findparentbyrank(tc.id, 'division') as division_s,
+findparentbyrank(tc.id, 'order') as order_s,
 
 to_char(cob.deaddate, 'YYYY-MM-DD') as deaddate_s
 
