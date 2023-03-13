@@ -66,4 +66,6 @@ alldeterminations_ss
 habit_s
 materialtype_s
 sex_s
+order_s
+division_s
 deaddate_s
