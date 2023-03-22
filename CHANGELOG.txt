@@ -3,10 +3,23 @@ CHANGELOG for cspace-solr-ucb
 OK, it is not a *real* change log, but a list of changes resulting from git log
 sometimes with some human annotation after the fact.
 
-This is version 6.4.2
-Thu Feb  9 13:18:07 PST 2023
+This is version 6.4.3
+Wed Mar 22 16:43:39 PDT 2023
 
-ad28ca7 (HEAD -> main, tag: 6.4.2-rc4, origin/main, origin/HEAD) revise CHANGELOG.txt and bump version to 6.4.2-rc4
+e0e61c8 (HEAD -> main, origin/main, origin/HEAD) CSW-817: cron job for ucjeps archiving pipeline
+a781f22 CSW-820: add solr 'copyfields' for order and division to ucbg schema
+2caebf5 CSW-820: add 'order' field to ucbg solr cores
+87482dd CSW-812: remove ucjeps 'soft-delets' script from here
+e59aae1 Merge pull request #2 from lkvoong/CSW-818
+a5864c8 CSW-818: replace findconserv* functions with subquery
+aef56b2 CSW-819: fix notification email for solr pipelines
+dcbcf87 CSW-812: extract 'soft-deleted' accessions for ucjeps, nightly
+c785bee CSC-1382: dump output from cron job for dump-users.sh into bit bucket
+c17b2f9 CSW-737: crontab now runs hierarchies notification *script*, and notifies the right folks
+696be8c CSC-1382: cron job to run dump-users.sh, 'user account verification script'
+8a36dcb CSW-775: add newline to pahma-*.fields.txt, solr dynamic fields lists
+5814601 (tag: 6.4.2) revise CHANGELOG.txt and bump version to 6.4.2
+ad28ca7 (tag: 6.4.2-rc4) revise CHANGELOG.txt and bump version to 6.4.2-rc4
 b3f8e8e CSW-764: use 'artist override' when computing artistcalc for bampfa solr pipelines
 2993b2c CSW-803: further revisions to part20.sql to handle object status better
 78f8ac9 CSW-798, CSW-803: further revisions to part20.sql and part46.sql per mtb
