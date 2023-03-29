@@ -27,6 +27,7 @@ export UCJEPS_SERVER="dba-postgres-dev-45.ist.berkeley.edu port=5119"
 export UCJEPS_USER="reporter_ucjeps"
 export UCJEPS_CONTACT="nobody@nowhere.edu"
 
+export TECH_LEAD="nobody@nowhere.edu"
 export SUPPORT_CONTACT="nobody@nowhere.edu"
 
 source ${HOME}/set_platform.sh

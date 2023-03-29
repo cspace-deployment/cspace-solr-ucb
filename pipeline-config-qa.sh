@@ -27,6 +27,7 @@ export UCJEPS_SERVER="localhost port=54321"
 export UCJEPS_USER="ucjeps"
 export UCJEPS_CONTACT="cesarv.h@berkeley.edu"
 
+export TECH_LEAD="cesarv.h@berkeley.edu"
 export SUPPORT_CONTACT="cesarv.h@berkeley.edu"
 
 source ${HOME}/set_platform.sh
