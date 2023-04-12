@@ -161,7 +161,11 @@ time python3 computeTimeIntegers.py d9.csv 4solr.${TENANT}.internal.csv
 # check high water mark for storage use; get rid of intermediate files
 ##############################################################################
 ../common/check_space.sh
+##############################################################################
+# tidy up the many intermediate files
+##############################################################################
 rm d?.csv d6?.csv part*.csv temp.*.csv basic*.csv header4Solr.csv
+rm internal.csv restricted.csv
 ##############################################################################
 # save (hide) the internal extract so that the internal pipeline can find it
 ##############################################################################
