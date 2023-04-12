@@ -10,7 +10,7 @@ export MINIMUM=$4
 export BLOB_COLUMN=$5
 export FILE_PART=$6
 # set by ${HOME}/set_platform.sh
-export TEMP_DIR=${SOLR_CACHE_DIR}
+export SOLR_CACHE_DIR=${SOLR_CACHE_DIR}
 ##############################################################################
 # show how much space, etc we have at this moment
 ##############################################################################
@@ -23,9 +23,9 @@ function notify()
   echo "$1"
   echo "$1" | mail -r "cspace-support@lists.berkeley.edu" -s "$2" -- ${CONTACT}
 }
-if [[ ! -d ${TEMP_DIR} ]]; then
-  MSG="Could not find temporary directory ${TEMP_DIR}; refresh aborted, core left untouched."
-  notify "${MSG}" "PROBLEM ${TENANT}-${CORE} nightly solr refresh failed: ${TEMP_DIR} missing"
+if [[ ! -d ${SOLR_CACHE_DIR} ]]; then
+  MSG="Could not find temporary directory ${SOLR_CACHE_DIR}; refresh aborted, core left untouched."
+  notify "${MSG}" "PROBLEM ${TENANT}-${CORE} nightly solr refresh failed: ${SOLR_CACHE_DIR} missing"
   exit 1
 fi
 # nb: in general the name of the core and the name of the file are related.
@@ -78,8 +78,8 @@ time curl -X POST -S -s "${SOLRCMD}" -H 'Content-type:text/plain; charset=utf-8'
 if [ $? != 0 ]; then
   MSG="Solr POST failed for ${TENANT}-${CORE}, file ${CSVFILE} ; retrying using previous successful upload"
   notify "${MSG}" "PROBLEM ${TENANT}-${CORE} nightly solr refresh failed"
-  gunzip -k -f ${TEMP_DIR}/${CSVFILE}.gz
-  time curl -X POST -S -s "$SOLRCMD" -H 'Content-type:text/plain; charset=utf-8' -T ${TEMP_DIR}/${CSVFILE}
+  gunzip -k -f ${SOLR_CACHE_DIR}/${CSVFILE}.gz
+  time curl -X POST -S -s "$SOLRCMD" -H 'Content-type:text/plain; charset=utf-8' -T ${SOLR_CACHE_DIR}/${CSVFILE}
   if [ $? != 0 ]; then
     MSG="Solr re-POST failed for ${TENANT}-${CORE}, file ${CSVFILE}; giving up and sending email."
     notify "${MSG}" "PROBLEM ${TENANT}-${CORE} nightly solr refresh from previous saved file (2nd attempt), failed too."
@@ -90,7 +90,7 @@ if [ $? != 0 ]; then
     exit 1
   fi
   # remove the gunzipped copy we made, but leave the original gzipped file
-  rm ${TEMP_DIR}/${CSVFILE}
+  rm ${SOLR_CACHE_DIR}/${CSVFILE}
 else
   ##############################################################################
   # the refresh succeeded.
@@ -100,21 +100,21 @@ else
   if [ ${BLOB_COLUMN} != 0 ]; then
     cut -f${BLOB_COLUMN} ${CSVFILE} | grep -v 'blob_ss' | perl -pe 's/\r//' |  grep . | wc -l > ${TENANT}.counts.${FILE_PART}.blobs.csv
     cut -f${BLOB_COLUMN} ${CSVFILE} | grep -v 'blob_ss' | perl -pe 's/\r//;s/,/\n/g;s/\|/\n/g;'| grep . | wc -l >> ${TENANT}.counts.${FILE_PART}.blobs.csv
-    cp ${TENANT}.counts.${FILE_PART}.blobs.csv ${TEMP_DIR}/
+    cp ${TENANT}.counts.${FILE_PART}.blobs.csv ${SOLR_CACHE_DIR}/
     cat ${TENANT}.counts.${FILE_PART}.blobs.csv
   fi
-  cp ${TENANT}.counts.${FILE_PART}.csv ${TEMP_DIR}/
+  cp ${TENANT}.counts.${FILE_PART}.csv ${SOLR_CACHE_DIR}/
   ##############################################################################
   # log the state of the .csv files
   ##############################################################################
   wc -l *.csv
   ##############################################################################
-  # gzip and copy the successful extract to ${TEMP_DIR} in case we need it tomorrow.
+  # gzip and copy the successful extract to ${SOLR_CACHE_DIR} in case we need it tomorrow.
   # (but first wait for any processes started earlier...)
   ##############################################################################
   wait
   gzip -f ${CSVFILE}
-  mv ${CSVFILE}.gz ${TEMP_DIR}
+  mv ${CSVFILE}.gz ${SOLR_CACHE_DIR}
   ##############################################################################
   # deal with statistics: move counts to apache public dir, email the errors off
   ##############################################################################
@@ -123,4 +123,4 @@ else
   ../common/make_error_report.sh | mail -r "cspace-support@lists.berkeley.edu" -A counts.tgz -s "${TENANT} ${FILE_PART} Solr Refresh: Counts and Errors `date`" ${CONTACT}
 fi
 # tidy up: move all csv files to cache directory
-mv *.csv ${TEMP_DIR}
+mv *.csv ${SOLR_CACHE_DIR}
