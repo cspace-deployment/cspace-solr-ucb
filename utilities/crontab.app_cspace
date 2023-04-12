@@ -40,7 +40,7 @@
 ##################################################################################
 # tidy up the blacklight databases every early monday
 ##################################################################################
-0 1 * * 1 ${HOME}/projects/radiance/dbcleanup-aws.sh 2>> /cspace/blacklight/dbcleanup.log
+0 1 * * 1 ${HOME}/projects/radiance/dbcleanup-aws.sh >> /cspace/blacklight/dbcleanup.log 2>&1
 ##################################################################################
 # monitor webapp use, compute solr core stats, goaccess log analysis
 ##################################################################################
