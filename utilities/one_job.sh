@@ -35,6 +35,10 @@ echo 'starting solr refresh' `date` >> ${SOLR_LOG_DIR}/refresh.log
 ./oj.ucjeps.sh &
 wait
 ##################################################################################
+# gzip any ungzipped files in 'solr cache'
+##################################################################################
+gzip -f ${SOLR_CACHE_DIR}/*.csv
+##################################################################################
 # optimize all solrcores after refresh
 # (nb: this seems to do little after solr v8, but leaving this here as a
 # reminder to posterity that perhaps someday it might be useful again.
