@@ -3,10 +3,16 @@ CHANGELOG for cspace-solr-ucb
 OK, it is not a *real* change log, but a list of changes resulting from git log
 sometimes with some human annotation after the fact.
 
-This is version 6.4.3
-Wed Mar 22 16:43:39 PDT 2023
+This is version 6.4.4-rc1
+Tue Apr 25 14:28:41 PDT 2023
 
-e0e61c8 (HEAD -> main, origin/main, origin/HEAD) CSW-817: cron job for ucjeps archiving pipeline
+80e5eb9 (HEAD -> main, origin/main, origin/HEAD) CSW-826: compress all cached solr pipeline .csv files nightly
+00c8bec CSW-738: quiet down cron job for blacklight db cleanup
+2ea33d3 CSW-826: don't keep 2 pahma solr pipeline intermediate files
+ec64505 CSW-826: minor refactoring of common solr pipeline code: var names
+466e48e CSW-819: add a contact for 'tech-lead' to pipeline and other notifications
+7b0999d (tag: 6.4.3) revise CHANGELOG.txt and bump version to 6.4.3
+e0e61c8 CSW-817: cron job for ucjeps archiving pipeline
 a781f22 CSW-820: add solr 'copyfields' for order and division to ucbg schema
 2caebf5 CSW-820: add 'order' field to ucbg solr cores
 87482dd CSW-812: remove ucjeps 'soft-delets' script from here
