@@ -20,7 +20,7 @@
 ##################################################################################
 # start the solr pipelines at 1 minute after midnight daily (takes 2 hours or so)
 ##################################################################################
-01 03 * * * ${HOME}/one_job.sh
+01 21 * * * ${HOME}/one_job.sh
 ##################################################################################
 # run the UCJEPS extract jobs weekly, on Saturday
 ##################################################################################
@@ -40,7 +40,7 @@
 ##################################################################################
 # tidy up the blacklight databases every early monday
 ##################################################################################
-0 1 * * 1 ${HOME}/projects/radiance/dbcleanup-aws.sh >> /cspace/blacklight/dbcleanup.log 2>&1
+00 01 * * 1 ${HOME}/projects/radiance/dbcleanup-aws.sh >> /cspace/blacklight/dbcleanup.log 2>&1
 ##################################################################################
 # monitor webapp use, compute solr core stats, goaccess log analysis
 ##################################################################################
@@ -48,4 +48,4 @@
 ##################################################################################
 # generate list of cspace users for verification, monthly. send email.
 ##################################################################################
-0  0  1 * * ${HOME}/cspace-utils-ucb/scripts/dump-users.sh rjaffe@berkeley.edu > /dev/null 2>&1
+00 00 01 * * ${HOME}/cspace-utils-ucb/scripts/dump-users.sh rjaffe@berkeley.edu > /dev/null 2>&1
