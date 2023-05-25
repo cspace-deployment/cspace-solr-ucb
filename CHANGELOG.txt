@@ -3,10 +3,13 @@ CHANGELOG for cspace-solr-ucb
 OK, it is not a *real* change log, but a list of changes resulting from git log
 sometimes with some human annotation after the fact.
 
-This is version 6.4.4-rc1
-Tue Apr 25 14:28:41 PDT 2023
+This is version 6.4.4-rc2
+Thu May 25 11:29:40 PDT 2023
 
-80e5eb9 (HEAD -> main, origin/main, origin/HEAD) CSW-826: compress all cached solr pipeline .csv files nightly
+7e77eeb (HEAD -> main) CSW-812: revise ucjeps 'list-soft-deletes' query to include 'updatedby'
+228c48a (origin/main, origin/HEAD) CSW-857: BMUs should start at 21h01, not 03h01
+f0bec6b (tag: 6.4.4-rc1) revise CHANGELOG.txt and bump version to 6.4.4-rc1
+80e5eb9 CSW-826: compress all cached solr pipeline .csv files nightly
 00c8bec CSW-738: quiet down cron job for blacklight db cleanup
 2ea33d3 CSW-826: don't keep 2 pahma solr pipeline intermediate files
 ec64505 CSW-826: minor refactoring of common solr pipeline code: var names
