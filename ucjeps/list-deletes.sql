@@ -41,6 +41,7 @@ select
     lg.georefremarks as georefremarks_s,
     lg.geoRefencedBy as georeferencedby_s,
     cc.updatedat as updatedat_dt,
+    cc.updatedby as updatedby_s,
     case when conh.labelheader like 'urn:%' then getdispl(conh.labelheader)
         else conh.labelheader
     end as labelheader_s,
@@ -134,7 +135,7 @@ select
   tig.qualifier as determinationqualifier_s,
   array_to_string(array
       (SELECT com.item
-       FROM collectionobjects_common_comments com 
+       FROM collectionobjects_common_comments com
        WHERE com.id = co.id AND com.pos IS NOT NULL
        ORDER BY com.pos), '␥', '') AS comments_ss,
   co.numberOfObjects AS numberofobjects_s,
