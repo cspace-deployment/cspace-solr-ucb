@@ -1,4 +1,4 @@
-SELECT 
+SELECT
 h2.name objectcsid,
 cc.objectnumber,
 h1.name mediacsid,
@@ -11,7 +11,8 @@ mc.copyrightstatement,
 mc.identificationnumber,
 mc.rightsholder rightsholderRefname,
 regexp_replace(mc.rightsholder, '^.*\)''(.*)''$', '\1') rightsholder,
-mc.contributor
+mc.contributor,
+core.updatedat as updatedat_dt
 
 FROM media_common mc
 
@@ -22,6 +23,7 @@ INNER JOIN relations_common r on (h1.name = r.objectcsid)
 LEFT OUTER JOIN hierarchy h2 on (r.subjectcsid = h2.name)
 LEFT OUTER JOIN collectionobjects_common cc on (h2.id = cc.id)
 LEFT OUTER JOIN collectionobjects_ucjeps cop on (h2.id = cop.id)
+LEFT OUTER JOIN collectionspace_core core on cc.id=core.id
 
 JOIN hierarchy h3 ON (mc.blobcsid = h3.name)
 LEFT OUTER JOIN blobs_common b on (h3.id = b.id);
