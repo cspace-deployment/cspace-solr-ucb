@@ -28,12 +28,11 @@
 cd
 source ${HOME}/pipeline-config.sh -q
 echo 'starting solr refresh' `date` >> ${SOLR_LOG_DIR}/refresh.log
-./oj.bampfa.sh &
-./oj.botgarden.sh &
-./oj.cinefiles.sh &
-./oj.pahma.sh &
-./oj.ucjeps.sh &
-wait
+./oj.bampfa.sh
+./oj.botgarden.sh
+./oj.cinefiles.sh
+./oj.pahma.sh
+./oj.ucjeps.sh
 ##################################################################################
 # gzip any ungzipped files in 'solr cache'
 ##################################################################################
