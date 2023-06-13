@@ -26,6 +26,7 @@ pahma-locations
 pahma-osteology
 ucjeps-public
 ucjeps-media
+ucjeps-merritt
 "
 
 # if we have been given a core to recreate, just recreate that one
