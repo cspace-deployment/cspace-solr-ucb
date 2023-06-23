@@ -3,10 +3,11 @@ CHANGELOG for cspace-solr-ucb
 OK, it is not a *real* change log, but a list of changes resulting from git log
 sometimes with some human annotation after the fact.
 
-This is version 6.5.0-rc1
-Tue Jun 13 16:26:54 PDT 2023
+This is version 6.5.0
+Fri Jun 23 08:38:18 PDT 2023
 
-a3039ee (HEAD -> main, origin/main, origin/HEAD) CSW-817: create the ucjeps-merritt solr core
+d5b5450 (HEAD -> main, tag: 6.5.0-rc1, origin/main, origin/HEAD) revise CHANGELOG.txt and bump version to 6.5.0-rc1
+a3039ee CSW-817: create the ucjeps-merritt solr core
 f3fbba8 NOJIRA: correct inline documentation for cron jobs
 28b3dde (tag: 6.4.4) revise CHANGELOG.txt and bump version to 6.4.4
 6965f91 revise CHANGELOG.txt and bump version to 6.4.4-rc3
