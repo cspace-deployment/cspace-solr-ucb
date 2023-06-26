@@ -26,9 +26,11 @@
 ##################################################################################
 00 01 * * 6 ${HOME}/bin/run-ucjeps-extracts.sh > /dev/null 2>&1
 ##################################################################################
-# run the UCJEPS archiving metadata update nightly
+# run the UCJEPS archiving metadata update nightly; archive bmu images; tidy up
 ##################################################################################
-01 04 * * * cd /cspace/merritt/batch ; ./update_metadata.sh > /dev/null 2>&1
+01 04 * * * cd /cspace/merritt/batch ; ./update_metadata.sh >> /cspace/webapps_logs/ucjeps.archiving.log 2>&1
+01 03 * * * cd /cspace/merritt/batch ; ./run_bmu_archive.sh >> /cspace/webapps_logs/ucjeps.archiving.log 2>&1
+01 03 * * * cd /cspace/merritt/batch ; ./run_tidy.sh >> /cspace/webapps_logs/ucjeps.archiving.log 2>&1
 ##################################################################################
 # run the tricoder upload job (with locks) weekdays 7am-10pm, 3 mins after the hour
 ##################################################################################
