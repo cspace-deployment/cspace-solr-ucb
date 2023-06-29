@@ -3,11 +3,13 @@ CHANGELOG for cspace-solr-ucb
 OK, it is not a *real* change log, but a list of changes resulting from git log
 sometimes with some human annotation after the fact.
 
-This is version 6.6.0-rc1
-Mon Jun 26 09:03:49 PDT 2023
+This is version 6.6.0-rc2
+Thu Jun 29 08:11:38 PDT 2023
 
-2de7b5b (HEAD -> main) CSW-817: run ucjeps image archiving scripts nightly (metadata, bm archive, tidy)
-7ed752a (tag: 6.5.0, origin/main, origin/HEAD) revise CHANGELOG.txt and bump version to 6.5.0
+2bcf5cc (HEAD -> main) CSW-817: latest version of blacklight stack crontab
+50c218a (tag: 6.6.0-rc1, origin/main, origin/HEAD) revise CHANGELOG.txt and bump version to 6.6.0-rc1
+2de7b5b CSW-817: run ucjeps image archiving scripts nightly (metadata, bm archive, tidy)
+7ed752a (tag: 6.5.0) revise CHANGELOG.txt and bump version to 6.5.0
 d5b5450 revise CHANGELOG.txt and bump version to 6.5.0-rc1
 a3039ee CSW-817: create the ucjeps-merritt solr core
 f3fbba8 NOJIRA: correct inline documentation for cron jobs
