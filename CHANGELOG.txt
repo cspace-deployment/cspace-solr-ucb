@@ -3,11 +3,15 @@ CHANGELOG for cspace-solr-ucb
 OK, it is not a *real* change log, but a list of changes resulting from git log
 sometimes with some human annotation after the fact.
 
-This is version 6.6.0-rc2
-Thu Jun 29 08:11:38 PDT 2023
+This is version 6.6.1-rc1
+Wed Aug  9 17:54:20 PDT 2023
 
-2bcf5cc (HEAD -> main) CSW-817: latest version of blacklight stack crontab
-50c218a (tag: 6.6.0-rc1, origin/main, origin/HEAD) revise CHANGELOG.txt and bump version to 6.6.0-rc1
+38c6079 (HEAD -> main, origin/main, origin/HEAD) Merge pull request #3 from lkvoong/CSW-738
+77c8d36 CSW-738: Update QA notification email in pipeline-config-qa.sh
+614ec2a CSW-817: update timings, etc for ucjeps image archiving cron jobs
+3e1947b (tag: 6.6.0-rc2) revise CHANGELOG.txt and bump version to 6.6.0-rc2
+2bcf5cc CSW-817: latest version of blacklight stack crontab
+50c218a (tag: 6.6.0-rc1) revise CHANGELOG.txt and bump version to 6.6.0-rc1
 2de7b5b CSW-817: run ucjeps image archiving scripts nightly (metadata, bm archive, tidy)
 7ed752a (tag: 6.5.0) revise CHANGELOG.txt and bump version to 6.5.0
 d5b5450 revise CHANGELOG.txt and bump version to 6.5.0-rc1
@@ -182,7 +186,7 @@ df195dc CSW-629: update cinefiles denorm to get config from cinefiles-denorm-con
 63548ef CSW-629: update solr pipelines to get config from pipeline-config.sh
 1be4608 CSW-629: solr pipeline config is now in these 3 files
 b6bb878 NOJIRA: remove unneeded legacy file
-990babf (CSW-629) CSW-324: use proper email list for solr refresh notifications
+990babf CSW-324: use proper email list for solr refresh notifications
 7da1578 CSW-325: revise bmu nightly email address for ucbg
 b011a7f CSW-612: place solr refresh counts where they can be used by metrics scripts
 690893a CSW-624: update ucjeps spa email for bmu notifications
