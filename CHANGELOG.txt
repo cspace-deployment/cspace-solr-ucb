@@ -3,10 +3,11 @@ CHANGELOG for cspace-solr-ucb
 OK, it is not a *real* change log, but a list of changes resulting from git log
 sometimes with some human annotation after the fact.
 
-This is version 6.6.1-rc1
-Wed Aug  9 17:54:20 PDT 2023
+This is version 6.6.1
+Tue Sep 12 16:57:38 PDT 2023
 
-38c6079 (HEAD -> main, origin/main, origin/HEAD) Merge pull request #3 from lkvoong/CSW-738
+751fd03 (HEAD -> main, tag: 6.6.1-rc1, origin/main, origin/HEAD) revise CHANGELOG.txt and bump version to 6.6.1-rc1
+38c6079 Merge pull request #3 from lkvoong/CSW-738
 77c8d36 CSW-738: Update QA notification email in pipeline-config-qa.sh
 614ec2a CSW-817: update timings, etc for ucjeps image archiving cron jobs
 3e1947b (tag: 6.6.0-rc2) revise CHANGELOG.txt and bump version to 6.6.0-rc2
