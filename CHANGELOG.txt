@@ -3,10 +3,11 @@ CHANGELOG for cspace-solr-ucb
 OK, it is not a *real* change log, but a list of changes resulting from git log
 sometimes with some human annotation after the fact.
 
-This is version 6.6.2-rc3
-Fri Nov 17 16:44:48 PST 2023
+This is version 6.6.2
+Fri Nov 17 16:56:10 PST 2023
 
-c199db5 (HEAD -> main, tag: 6.6.2-rc2, origin/main, origin/HEAD) revise CHANGELOG.txt and bump version to 6.6.2-rc2
+e5d6aa7 (HEAD -> main, tag: 6.6.2-rc3, origin/main, origin/HEAD) revise CHANGELOG.txt and bump version to 6.6.2-rc3
+c199db5 (tag: 6.6.2-rc2) revise CHANGELOG.txt and bump version to 6.6.2-rc2
 164160d (tag: 6.6.2-rc1) revise CHANGELOG.txt and bump version to 6.6.2-rc1
 b3ab19b (tag: 6.6.1) revise CHANGELOG.txt and bump version to 6.6.1
 1c315fd revise CHANGELOG.txt and bump version to 6.6.1
