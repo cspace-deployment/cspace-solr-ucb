@@ -31,7 +31,6 @@ select
                 then lg.vcoordinates
     end as trscoordinates_s,
     lg.geodeticdatum as datum_s,
-    lg.localitysource as coordinatesource_s,
     lg.coorduncertainty as coordinateuncertainty_f,
     lg.coorduncertaintyunit as coordinateuncertaintyunit_s,
     lg.localitynote as localitynote_s,
