@@ -14,7 +14,7 @@ dwc_mapping = [
     ("collectorverbatim_s", "tbd"),
     ("collstate_s", "stateProvince"),
     ("comments_ss", "occurrenceRemarks"),
-    ("coordinatesource_s", "georeferenceSources"),
+    #("coordinatesource_s", "georeferenceSources"),
     ("coordinateuncertainty_f", "coordinateUncertaintyInMeters"),
     #("coordinateuncertaintyunit_s", "coordinateUncertaintyInMeters"),
     ("createdat_dt", "tbd"),

@@ -17,7 +17,6 @@ elevationunit_s
 habitat_s
 trscoordinates_s
 datum_s
-coordinatesource_s
 coordinateuncertaintyunit_s
 localitynote_s
 localitysource_s
