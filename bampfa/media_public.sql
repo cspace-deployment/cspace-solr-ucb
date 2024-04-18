@@ -16,17 +16,15 @@ mb.imageNumber
 
 FROM media_common mc
 
-LEFT OUTER JOIN media_bampfa mb on (mb.id = mc.id)
+LEFT OUTER JOIN media_bampfa mb ON (mb.id = mc.id)
 JOIN misc ON (mc.id = misc.id AND misc.lifecyclestate <> 'deleted')
 LEFT OUTER JOIN hierarchy h1 ON (h1.id = mc.id)
-INNER JOIN relations_common r on (h1.name = r.objectcsid)
-LEFT OUTER JOIN hierarchy h2 on (r.subjectcsid = h2.name)
-LEFT OUTER JOIN collectionobjects_common cc on (h2.id = cc.id)
-LEFT OUTER JOIN collectionobjects_bampfa cop on (h2.id = cop.id)
+INNER JOIN relations_common r ON (h1.name = r.objectcsid)
+LEFT OUTER JOIN hierarchy h2 ON (r.subjectcsid = h2.name)
+LEFT OUTER JOIN collectionobjects_common cc ON (h2.id = cc.id)
 
 JOIN hierarchy h3 ON (mc.blobcsid = h3.name)
-LEFT OUTER JOIN blobs_common b on (h3.id = b.id)
-WHERE mb.websitedisplaylevel != 'No public display'
+LEFT OUTER JOIN blobs_common b ON (h3.id = b.id)
+WHERE mb.websitedisplaylevel IS DISTINCT FROM 'No public display'
 
 ORDER BY mb.imageNumber ASC
-
