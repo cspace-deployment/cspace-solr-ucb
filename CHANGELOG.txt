@@ -3,10 +3,19 @@ CHANGELOG for cspace-solr-ucb
 OK, it is not a *real* change log, but a list of changes resulting from git log
 sometimes with some human annotation after the fact.
 
-This is version 6.6.3
-Mon Jan 29 11:06:09 PST 2024
+This is version 6.7.0-rc1
+Wed May 15 15:14:39 PDT 2024
 
-014b9c0 (HEAD -> main, tag: 6.6.3-rc1, origin/main, origin/HEAD) revise CHANGELOG.txt and bump version to 6.6.3-rc1
+7d81657 (HEAD -> main, origin/main, origin/HEAD) Merge pull request #5 from lkvoong/CSW-705
+9c6a53e Merge pull request #4 from lkvoong/CSW-923
+58da177 CSW-705: removed field coordinatesource_s
+f5d4fd7 CSW-705: commented out coordinatesource_s
+c662d79 CSW-705: remove coordinatesource_s from query
+baad57f CSW-705: remove coordinatesource_s from query
+2b20c5f CSW-923: remove extraneous join to collectionobjects_bampfa
+7ca045b CSW-923: update where clause to records with null websitedisplaylevel; remove extra join
+7dddb09 (tag: 6.6.3) revise CHANGELOG.txt and bump version to 6.6.3
+014b9c0 (tag: 6.6.3-rc1) revise CHANGELOG.txt and bump version to 6.6.3-rc1
 9e47e1c (tag: 6.6.2) revise CHANGELOG.txt and bump version to 6.6.2
 e5d6aa7 (tag: 6.6.2-rc3) revise CHANGELOG.txt and bump version to 6.6.2-rc3
 c199db5 (tag: 6.6.2-rc2) revise CHANGELOG.txt and bump version to 6.6.2-rc2
