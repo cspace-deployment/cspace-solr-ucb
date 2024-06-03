@@ -10,11 +10,11 @@ while (<>) {
   @columns[11] .= "T00:00:00Z" if @columns[11];
   @columns[12] .= "T00:00:00Z" if @columns[12];
   # fix updatedat_dt
-  @columns[33] =~ s/ /T/;
-  @columns[33] .= 'Z';
+  @columns[35] =~ s/ /T/;
+  @columns[35] .= 'Z';
   # fix createdat_dt
-  @columns[62] =~ s/ /T/;
-  @columns[62] .= 'Z';
+  @columns[64] =~ s/ /T/;
+  @columns[64] .= 'Z';
 
   #print scalar @columns, "\n";
   print join("\t",@columns). "\n";
