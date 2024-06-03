@@ -36,7 +36,7 @@ select
     lg.localitynote as localitynote_s,
     lg.localitysource as localitysource_s,
     lg.localitysourcedetail as localitysourcedetail_s,
-    lg.georefsource as georefsource_s,
+    getdispl(lg.georefsource) as georefsource_s,
     lg.georefremarks as georefremarks_s,
     lg.geoRefencedBy as georeferencedby_s,
     cc.updatedat as updatedat_dt,
