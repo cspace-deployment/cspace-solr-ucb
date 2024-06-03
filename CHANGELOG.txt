@@ -3,10 +3,15 @@ CHANGELOG for cspace-solr-ucb
 OK, it is not a *real* change log, but a list of changes resulting from git log
 sometimes with some human annotation after the fact.
 
-This is version 6.7.0-rc1
-Wed May 15 15:14:39 PDT 2024
+This is version 6.7.0-rc2
+Mon Jun  3 11:52:51 PDT 2024
 
-7d81657 (HEAD -> main, origin/main, origin/HEAD) Merge pull request #5 from lkvoong/CSW-705
+cd73f5a (HEAD -> main, origin/main, origin/HEAD) Merge pull request #6 from lkvoong/CSW-705
+187dcfa CSW-705: update georefsource_s to getdispl(localitygroup.georefsource); remove extra joins
+f256201 CSW-705: update georefsource_s to localitygroup.georefsource; rm extra joins
+ff98fe5 CSW-705: update dwc_mapping to map solr georefsource_s to DwC georeferenceSources
+8204aab (tag: 6.7.0-rc1) revise CHANGELOG.txt and bump version to 6.7.0-rc1
+7d81657 Merge pull request #5 from lkvoong/CSW-705
 9c6a53e Merge pull request #4 from lkvoong/CSW-923
 58da177 CSW-705: removed field coordinatesource_s
 f5d4fd7 CSW-705: commented out coordinatesource_s
