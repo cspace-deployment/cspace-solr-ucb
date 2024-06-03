@@ -36,7 +36,7 @@ select
     lg.localitynote as localitynote_s,
     lg.localitysource as localitysource_s,
     lg.localitysourcedetail as localitysourcedetail_s,
-    gr.georefsource as georefsource_s,
+    lg.georefsource as georefsource_s,
     lg.georefremarks as georefremarks_s,
     lg.geoRefencedBy as georeferencedby_s,
     cc.updatedat as updatedat_dt,
@@ -167,23 +167,19 @@ left outer join structureddategroup detdetailssdg on (detdetailssdg.id = hdetdet
 left outer join hierarchy hlg
         on (co.id = hlg.parentid and hlg.pos = 0
         and hlg.name = 'collectionobjects_naturalhistory:localityGroupList')
+left outer join localitygroup lg on (lg.id = hlg.id)
 left outer join taxon_common tc on (tig.taxon = tc.refname)
 left outer join hierarchy httg on (
     tc.id = httg.parentid
     and httg.name = 'taxon_common:taxonTermGroupList'
     and httg.pos = 0)
-
 inner join hierarchy h2int on co.id = h2int.id and h2int.name = h1.name
 left outer join hierarchy htsg on (co.id = htsg.parentid and htsg.pos = 0
     and htsg.name = 'collectionobjects_naturalhistory:typeSpecimenGroupList')
 left outer join typespecimengroup tsg on (tsg.id = htsg.id)
-
 left outer join taxontermgroup ttg on (ttg.id = httg.id)
 left outer join taxon_ucjeps tu on (tu.id = tc.id)
 left outer join taxon_naturalhistory tnh on (tnh.id = tc.id)
-left outer join localitygroup lg on (lg.id = hlg.id)
-left outer join hierarchy hgr on (co.id = hgr.parentid and hgr.pos = 0 and hgr.name = 'collectionobjects_naturalhistory:localityGroupList')
-left outer join placegeorefgroup gr on (gr.id = hgr.id)
 left outer join collectionobjects_naturalhistory conh on (co.id = conh.id)
 left outer join collectionobjects_ucjeps cj on (co.id = cj.id)
 left outer join hierarchy hlng on (co.id = hlng.parentid and hlng.primarytype = 'localNameGroup' and hlng.pos = 0)
