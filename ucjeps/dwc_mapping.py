@@ -30,6 +30,7 @@ dwc_mapping = [
     ("elevation_s", "verbatimElevation"),
     #("elevationunit_s", "verbatimElevationUnit"),
     ("family_s", "family"),
+    ("georefsource_s", "georeferenceSources"),
     ("habitat_s", "habitat"),
     ("hastypeassertions_s", "tbd"),
     ("id", "tbd"),
