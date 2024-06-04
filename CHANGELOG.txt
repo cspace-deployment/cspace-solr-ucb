@@ -3,10 +3,11 @@ CHANGELOG for cspace-solr-ucb
 OK, it is not a *real* change log, but a list of changes resulting from git log
 sometimes with some human annotation after the fact.
 
-This is version 6.7.0-rc3
-Mon Jun  3 16:26:29 PDT 2024
+This is version 6.7.0
+Tue Jun  4 10:26:10 PDT 2024
 
-01ebc11 (HEAD -> main, origin/main, origin/HEAD) Merge pull request #7 from lkvoong/CSW-705
+a8d6512 (HEAD -> main, tag: 6.7.0-rc3, origin/main, origin/HEAD) revise CHANGELOG.txt and bump version to 6.7.0-rc3
+01ebc11 Merge pull request #7 from lkvoong/CSW-705
 067275a CSW-705: Update column numbers for updatedat_dt and createdat_dt
 a1bcfbb (tag: 6.7.0-rc2) revise CHANGELOG.txt and bump version to 6.7.0-rc2
 cd73f5a Merge pull request #6 from lkvoong/CSW-705
