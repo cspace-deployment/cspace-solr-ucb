@@ -50,7 +50,7 @@ done
 
 for t in pahma
 do
-  for type in osteology locations
+  for type in locations
     do
       makeaschema
     done

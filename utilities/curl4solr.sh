@@ -15,7 +15,6 @@ curl -O https://webapps.cspace.berkeley.edu/4solr.cinefiles.public.csv.gz
 curl -O https://webapps.cspace.berkeley.edu/4solr.cinefiles.films.csv.gz
 curl -O https://webapps.cspace.berkeley.edu/4solr.pahma.locations.csv.gz
 curl -O https://webapps.cspace.berkeley.edu/4solr.pahma.allmedia.csv.gz
-curl -O https://webapps.cspace.berkeley.edu/4solr.pahma.osteology.csv.gz
 curl -O https://webapps.cspace.berkeley.edu/4solr.pahma.public.csv.gz
 curl -O https://webapps.cspace.berkeley.edu/4solr.ucjeps.media.csv.gz
 curl -O https://webapps.cspace.berkeley.edu/4solr.ucjeps.public.csv.gz

@@ -26,7 +26,7 @@ TOOLS="$1/datasources/ucb/multicore"
 
 for t in bampfa botgarden ucjeps pahma cinefiles
 do
-  for type in public internal media propagations osteology locations
+  for type in public internal media propagations locations
     do
       if [ -f ${TOOLS}/${t}.${type}.managed-schema ]
       then

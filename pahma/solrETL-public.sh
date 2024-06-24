@@ -7,8 +7,8 @@
 ##############################################################################
 date
 ##############################################################################
-# note that in this case there are 4 nightly scripts, public, internal, and locations,
-# and osteology. internal depends on data created by public, so this case has to be handled
+# note that in this case there are 3 nightly scripts, public, internal, and locations.
+# internal depends on data created by public, so this case has to be handled
 # specially, and the scripts need to run in order: public > internal > locations
 ##############################################################################
 # while most of this script is already tenant specific, many of the specific commands

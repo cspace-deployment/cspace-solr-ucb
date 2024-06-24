@@ -19,7 +19,6 @@ wget https://webapps.cspace.berkeley.edu/4solr.pahma.allmedia.csv.gz
 #wget https://webapps.cspace.berkeley.edu/4solr.pahma.internal.csv.gz
 wget https://webapps.cspace.berkeley.edu/4solr.pahma.locations.csv.gz
 wget https://webapps.cspace.berkeley.edu/4solr.pahma.media.csv.gz
-wget https://webapps.cspace.berkeley.edu/4solr.pahma.osteology.csv.gz
 wget https://webapps.cspace.berkeley.edu/4solr.pahma.public.csv.gz
 wget https://webapps.cspace.berkeley.edu/4solr.ucjeps.media.csv.gz
 wget https://webapps.cspace.berkeley.edu/4solr.ucjeps.public.csv.gz

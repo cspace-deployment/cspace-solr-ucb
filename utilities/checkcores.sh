@@ -2,7 +2,7 @@
 
 for t in bampfa botgarden cinefiles pahma ucjeps
 do
-    for d in public internal propagations locations media osteology
+    for d in public internal propagations locations media
     do
        # echo `curl -s -S "http://localhost:8983/solr/${t}-${d}/admin/ping"`
        if [[ `curl -s -S "http://localhost:8983/solr/${t}-${d}/admin/ping" | grep 'status'` =~ .*"OK".* ]]
