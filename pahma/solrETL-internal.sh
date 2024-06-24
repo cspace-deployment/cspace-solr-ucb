@@ -16,9 +16,8 @@
 ##############################################################################
 date
 ##############################################################################
-# note that there are 4 nightly scripts, public, internal, and locations,
-# and osteology.
-# the scripts need to run in order: public > internal > locations | osteology.
+# note that there are 3 nightly scripts, public, internal, and locations,
+# the scripts need to run in order: public > internal > locations.
 # internal (this script) depends on data created by public
 # while most of this script is already tenant specific, many of the specific commands
 # are shared between the different scripts; having them be as similar as possible
