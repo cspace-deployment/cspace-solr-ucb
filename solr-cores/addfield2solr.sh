@@ -23,7 +23,6 @@ cinefiles-public
 pahma-public
 pahma-internal
 pahma-locations
-pahma-osteology
 ucjeps-public
 ucjeps-media
 "

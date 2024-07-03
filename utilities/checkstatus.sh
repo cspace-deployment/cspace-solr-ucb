@@ -8,7 +8,7 @@ source ${HOME}/pipeline-config.sh -q
 
 for t in bampfa botgarden cinefiles pahma ucjeps
 do
-    for d in public internal propagations locations media osteology
+    for d in public internal propagations locations media
     do
        LOG=${SOLR_LOG_DIR}/${t}.solr_extract_${d}.log
        if [[ -e ${LOG} ]]

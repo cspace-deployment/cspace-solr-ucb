@@ -8,7 +8,7 @@
 rm -f allcurls.sh
 for TENANT in bampfa botgarden cinefiles pahma ucjeps
 do
-    for CORE in public internal propagations locations media osteology
+    for CORE in public internal propagations locations media
     do
        FILE_PART=${CORE}
        if [[ -e ${HOME}/solrdatasources/${TENANT}/uploadparms.${TENANT}.${FILE_PART}.txt ]]
