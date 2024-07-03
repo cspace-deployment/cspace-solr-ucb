@@ -14,7 +14,12 @@ select
     co.fieldcollectionnumber as collectornumber_s,
     sdg.datedisplaydate as collectiondate_s,
     to_char(sdg.dateearliestscalarvalue, 'YYYY-MM-DD') as earlycollectiondate_dt,
-    to_char(sdg.datelatestscalarvalue, 'YYYY-MM-DD') as latecollectiondate_dt,
+    case
+        when sdg.datelatestscalarvalue::date - sdg.dateearliestscalarvalue::date = 1 
+            and nullif(sdg.datelatestday, 0) is null
+        then to_char(sdg.dateearliestscalarvalue, 'YYYY-MM-DD')
+        else to_char(sdg.datelatestscalarvalue, 'YYYY-MM-DD')
+    end as latecollectiondate_dt,
     regexp_replace(lg.fieldlocverbatim,E'[\\t\\n\\r]+', ' ', 'g') as locality_s,
     regexp_replace(lg.fieldloccounty, '^.*\)''(.*)''$', '\1') as collcounty_s,
     regexp_replace(lg.fieldlocstate, '^.*\)''(.*)''$', '\1') as collstate_s,
