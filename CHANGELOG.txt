@@ -3,10 +3,23 @@ CHANGELOG for cspace-solr-ucb
 OK, it is not a *real* change log, but a list of changes resulting from git log
 sometimes with some human annotation after the fact.
 
-This is version 6.7.0
-Tue Jun  4 10:26:10 PDT 2024
+This is version 6.7.1-rc1
+Fri Jul  5 12:19:34 PDT 2024
 
-a8d6512 (HEAD -> main, tag: 6.7.0-rc3, origin/main, origin/HEAD) revise CHANGELOG.txt and bump version to 6.7.0-rc3
+8c1785f (HEAD -> main, origin/main, origin/HEAD) Merge pull request #9 from lkvoong/CSW-908
+1edede8 Merge pull request #8 from lkvoong/CSW-933
+1419d98 CSW-908: remove references to osteology
+55bbb58 CSW-908: remove osteology from type list
+76630fa CSW-908: remove pahma-osteology from SOLR_CORE list
+fecb6d6 CSW-908: remove reference to osteology in d list
+b2583e1 CSW-908: remove reference to osteology in CORE list
+c0408d4 CSW-908: remove reference to 4solr.pahma.osteology.csv.gz
+bf30992 CSW-908: remove reference to 4solr.pahma.osteology
+7b891da CSW-908: remove references to osteology to retire osteology portal
+71a02f3 CSW-908: comment out code to run solrETL-osteology.sh
+4b13fc8 CSW-933: update query to use early date for single day dates
+e841823 (tag: 6.7.0) revise CHANGELOG.txt and bump version to 6.7.0
+a8d6512 (tag: 6.7.0-rc3) revise CHANGELOG.txt and bump version to 6.7.0-rc3
 01ebc11 Merge pull request #7 from lkvoong/CSW-705
 067275a CSW-705: Update column numbers for updatedat_dt and createdat_dt
 a1bcfbb (tag: 6.7.0-rc2) revise CHANGELOG.txt and bump version to 6.7.0-rc2
