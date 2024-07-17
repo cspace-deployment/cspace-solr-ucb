@@ -3,10 +3,11 @@ CHANGELOG for cspace-solr-ucb
 OK, it is not a *real* change log, but a list of changes resulting from git log
 sometimes with some human annotation after the fact.
 
-This is version 6.7.1-rc1
-Fri Jul  5 12:19:34 PDT 2024
+This is version 6.7.1
+Wed Jul 17 08:57:36 PDT 2024
 
-8c1785f (HEAD -> main, origin/main, origin/HEAD) Merge pull request #9 from lkvoong/CSW-908
+de4fd8f (HEAD -> main, tag: 6.7.1-rc1, origin/main, origin/HEAD) revise CHANGELOG.txt and bump version to 6.7.1-rc1
+8c1785f Merge pull request #9 from lkvoong/CSW-908
 1edede8 Merge pull request #8 from lkvoong/CSW-933
 1419d98 CSW-908: remove references to osteology
 55bbb58 CSW-908: remove osteology from type list
