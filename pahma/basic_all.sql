@@ -1,14 +1,26 @@
-SELECT cc.id,
-       h1.name                                                             AS "csid_s",
-       cp.sortableobjectnumber                                             AS "objsortnum_s",
-       cc.objectnumber                                                     AS "objmusno_s",
-       regexp_replace(cp.pahmatmslegacydepartment, '^.*\)''(.*)''$', '\1') AS "objdept_s",
-       regexp_replace(cc.collection, '^.*\)''(.*)''$', '\1')               AS "objtype_s",
-       cc.numberofobjects                                                  AS "objcount_s",
-       cp.inventorycount                                                   AS "objcountnote_s",
-       cp.portfolioseries                                                  AS "objkeelingser_s",
-       regexp_replace(cp.pahmafieldlocverbatim, E'[\\t\\n\\r]+', ' ', 'g') AS "objfcpverbatim_s"
+SELECT DISTINCT ON (cc.objectnumber)
+    cc.id,
+    hcc.name                                                            AS csid_s,
+    cp.sortableobjectnumber                                             AS objsortnum_s,
+    cc.objectnumber                                                     AS objmusno_s,
+    getdispl(cp.pahmatmslegacydepartment)                               AS objdept_s,
+    getdispl(cc.collection)                                             AS objtype_s,
+    ocg.objectcount                                                     AS objcount_s,
+    ocg.objectcountnote                                                 AS objcountnote_s,
+    cp.portfolioseries                                                  AS objkeelingser_s,
+    regexp_replace(cp.pahmafieldlocverbatim, E'[\\t\\n\\r]+', ' ', 'g') AS objfcpverbatim_s
 FROM collectionobjects_common cc
-         JOIN hierarchy h1 ON (h1.id = cc.id)
-         LEFT OUTER JOIN collectionobjects_pahma cp ON (cp.id = cc.id)
-         JOIN misc ON (cc.id = misc.id and misc.lifecyclestate <> 'deleted')
+    JOIN misc m ON (
+        cc.id = m.id
+        AND m.lifecyclestate <> 'deleted')
+    JOIN hierarchy hcc ON (hcc.id = cc.id)
+    LEFT OUTER JOIN collectionobjects_pahma cp ON (cp.id = cc.id)
+    LEFT OUTER JOIN hierarchy hocg ON (
+        cc.id = hocg.parentid
+        AND hocg.primarytype = 'objectCountGroup')
+    LEFT OUTER JOIN objectcountgroup ocg ON (hocg.id = ocg.id)
+WHERE getdispl(ocg.objectcounttype) = 'piece count'
+ORDER BY 
+    cc.objectnumber,
+    ocg.objectcountdate
+    DESC NULLS LAST;
