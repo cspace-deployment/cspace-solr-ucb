@@ -3,10 +3,13 @@ CHANGELOG for cspace-solr-ucb
 OK, it is not a *real* change log, but a list of changes resulting from git log
 sometimes with some human annotation after the fact.
 
-This is version 6.7.1
-Wed Jul 17 08:57:36 PDT 2024
+This is version 6.7.2-rc1
+Mon Feb  3 12:02:55 PST 2025
 
-de4fd8f (HEAD -> main, tag: 6.7.1-rc1, origin/main, origin/HEAD) revise CHANGELOG.txt and bump version to 6.7.1-rc1
+e538b56 (HEAD -> main, origin/main, origin/HEAD) Merge pull request #10 from lkvoong/HMP-292
+1db993c HMP-292: update queries for objectcount (nubmerofobjects), objectcountnote (inventorycount)
+2411dec (tag: 6.7.1) revise CHANGELOG.txt and bump version to 6.7.1
+de4fd8f (tag: 6.7.1-rc1) revise CHANGELOG.txt and bump version to 6.7.1-rc1
 8c1785f Merge pull request #9 from lkvoong/CSW-908
 1edede8 Merge pull request #8 from lkvoong/CSW-933
 1419d98 CSW-908: remove references to osteology
