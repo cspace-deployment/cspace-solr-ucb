@@ -3,8 +3,8 @@ SELECT DISTINCT ON (cc.objectnumber)
     hcc.name                                                            AS csid_s,
     cp.sortableobjectnumber                                             AS objsortnum_s,
     cc.objectnumber                                                     AS objmusno_s,
-    getdispl(cp.pahmatmslegacydepartment)                               AS objdept_s,
-    getdispl(cc.collection)                                             AS objtype_s,
+    GETDISPL(cp.pahmatmslegacydepartment)                               AS objdept_s,
+    GETDISPL(cc.collection)                                             AS objtype_s,
     ocg.objectcount                                                     AS objcount_s,
     ocg.objectcountnote                                                 AS objcountnote_s,
     cp.portfolioseries                                                  AS objkeelingser_s,
@@ -15,11 +15,14 @@ FROM collectionobjects_common cc
         AND misc.lifecyclestate <> 'deleted')
     JOIN hierarchy hcc ON (hcc.id = cc.id)
     LEFT OUTER JOIN collectionobjects_pahma cp ON (cp.id = cc.id)
-    LEFT OUTER JOIN hierarchy hocg ON (cc.id = hocg.parentid AND hocg.primarytype = 'objectCountGroup')
-    LEFT OUTER JOIN objectcountgroup ocg ON (hocg.id = ocg.id)
+    LEFT OUTER JOIN hierarchy hocg ON (
+        cc.id = hocg.parentid
+        AND hocg.primarytype = 'objectCountGroup')
+    LEFT OUTER JOIN objectcountgroup ocg ON (
+        hocg.id = ocg.id
+        AND GETDISPL(ocg.objectcounttype) = 'piece count')
     LEFT OUTER JOIN collectionobjects_pahma_pahmaobjectstatuslist osl ON (cc.id = osl.id)
-WHERE getdispl(ocg.objectcounttype) = 'piece count'
-AND getdispl(osl.item) IN (
+WHERE GETDISPL(osl.item) IN (
     'accessioned',
     'deaccessioned',
     'number not used',

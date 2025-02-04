@@ -3,8 +3,8 @@ SELECT DISTINCT ON (cc.objectnumber)
     hcc.name                                                            AS csid_s,
     cp.sortableobjectnumber                                             AS objsortnum_s,
     cc.objectnumber                                                     AS objmusno_s,
-    getdispl(cp.pahmatmslegacydepartment)                               AS objdept_s,
-    getdispl(cc.collection)                                             AS objtype_s,
+    GETDISPL(cp.pahmatmslegacydepartment)                               AS objdept_s,
+    GETDISPL(cc.collection)                                             AS objtype_s,
     ocg.objectcount                                                     AS objcount_s,
     ocg.objectcountnote                                                 AS objcountnote_s,
     cp.portfolioseries                                                  AS objkeelingser_s,
@@ -18,8 +18,9 @@ FROM collectionobjects_common cc
     LEFT OUTER JOIN hierarchy hocg ON (
         cc.id = hocg.parentid
         AND hocg.primarytype = 'objectCountGroup')
-    LEFT OUTER JOIN objectcountgroup ocg ON (hocg.id = ocg.id)
-WHERE getdispl(ocg.objectcounttype) = 'piece count'
+    LEFT OUTER JOIN objectcountgroup ocg ON (
+        hocg.id = ocg.id
+        AND GETDISPL(ocg.objectcounttype) = 'piece count')
 ORDER BY 
     cc.objectnumber,
     ocg.objectcountdate
