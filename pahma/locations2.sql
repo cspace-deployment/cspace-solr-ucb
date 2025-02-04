@@ -23,8 +23,9 @@ FROM collectionobjects_common cc
     LEFT OUTER JOIN hierarchy hocg ON (
         cc.id = hocg.parentid
         AND hocg.primarytype = 'objectCountGroup')
-    LEFT OUTER JOIN objectcountgroup ocg ON (hocg.id = ocg.id)
-WHERE getdispl(ocg.objectcounttype) = 'piece count'
+    LEFT OUTER JOIN objectcountgroup ocg ON (
+        hocg.id = ocg.id
+        AND GETDISPL(ocg.objectcounttype) = 'piece count')
 ORDER BY 
     cc.objectnumber,
     ocg.objectcountdate
