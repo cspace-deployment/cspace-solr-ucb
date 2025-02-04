@@ -16,7 +16,8 @@ FROM collectionobjects_common cc
     JOIN hierarchy hcc ON (hcc.id = cc.id)
     LEFT OUTER JOIN collectionobjects_pahma cp ON (cp.id = cc.id)
     LEFT OUTER JOIN hierarchy hocg ON (
-        cc.id = hocg.parentid AND hocg.primarytype = 'objectCountGroup')
+        cc.id = hocg.parentid
+        AND hocg.primarytype = 'objectCountGroup')
     LEFT OUTER JOIN objectcountgroup ocg ON (
         hocg.id = ocg.id
         AND GETDISPL(ocg.objectcounttype) = 'piece count')
