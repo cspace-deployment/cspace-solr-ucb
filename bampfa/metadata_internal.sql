@@ -37,7 +37,7 @@ select
    replace(mp.dimensionsummary, '-', ' ') measurement,
    co.physicaldescription materials,
    sdgac.datedisplaydate dateacquired, -- in future will need case statements to get from intake
-   cas.item acquisitionsource,
+   getdispl(cas.item) acquisitionsource,
    cb.provenance,
    sg.inscriptioncontent signature,
    ccom.item notescomments,

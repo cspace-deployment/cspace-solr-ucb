@@ -66,7 +66,6 @@ from
       ON (h7.parentid = co.id AND h7.name = 'collectionobjects_common:measuredPartGroupList' and h7.pos=0)
    LEFT OUTER JOIN measuredpartgroup mp
       ON (h7.id = mp.id)
-   LEFT OUTER JOIN collectionobjects_bampfa_acquisitionsources cas on (co.id=cas.id and cas.pos=0)
    LEFT OUTER JOIN hierarchy h11
       ON (h11.parentid = co.id AND h11.name = 'collectionobjects_bampfa:bampfaObjectProductionPersonGroupList' and h11.pos=0)
    LEFT OUTER JOIN bampfaobjectproductionpersongroup ba
