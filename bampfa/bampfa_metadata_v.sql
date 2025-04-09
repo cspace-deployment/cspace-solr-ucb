@@ -48,7 +48,7 @@ create or replace view piction.bampfa_metadata_v as
              WHEN cb.permissiontoreproduce IS NULL OR cb.permissiontoreproduce::text = ''::text THEN 'Unknown'::character varying
              ELSE cb.permissiontoreproduce
          END AS permissiontoreproduce,
-    cas.item AS acquisitionsource,
+    getdispl(cas.item) AS acquisitionsource,
     utils.getdispl(cb.legalstatus::text) AS legalstatus,
     core.updatedat
    FROM hierarchy h1
