@@ -3,10 +3,13 @@ CHANGELOG for cspace-solr-ucb
 OK, it is not a *real* change log, but a list of changes resulting from git log
 sometimes with some human annotation after the fact.
 
-This is version 6.7.2-rc2
-Tue Feb  4 11:52:38 PST 2025
+This is version 7.0.0-rc1
+Thu May 29 10:25:10 PDT 2025
 
-7b0cfe8 (HEAD -> main, origin/main, origin/HEAD) Merge pull request #11 from lkvoong/HMP-292
+efc23e4 (HEAD -> main, origin/main, origin/HEAD) Merge pull request #12 from lkvoong/CSC-2380
+58668d2 CSC-2380: update collectionobjects_bampfa_acquisitionsources.item to get displayname
+ae38c5c (tag: 6.7.2-rc2) revise CHANGELOG.txt and bump version to 6.7.2-rc2
+7b0cfe8 Merge pull request #11 from lkvoong/HMP-292
 468c086 HMP-292: minor formatting change for basic_restricted.sql
 5efde93 HMP-292: Fix clause for objectcounttype 'piece count'; distinct on objectnumber produces count diff b/c of dup objnums
 77b8d07 (tag: 6.7.2-rc1) revise CHANGELOG.txt and bump version to 6.7.2-rc1
