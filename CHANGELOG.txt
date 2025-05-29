@@ -3,10 +3,11 @@ CHANGELOG for cspace-solr-ucb
 OK, it is not a *real* change log, but a list of changes resulting from git log
 sometimes with some human annotation after the fact.
 
-This is version 7.0.0-rc1
-Thu May 29 10:25:10 PDT 2025
+This is version 7.0.0
+Thu May 29 12:20:28 PDT 2025
 
-efc23e4 (HEAD -> main, origin/main, origin/HEAD) Merge pull request #12 from lkvoong/CSC-2380
+08ce6e0 (HEAD -> main, tag: 7.0.0-rc1, origin/main, origin/HEAD) revise CHANGELOG.txt and bump version to 7.0.0-rc1
+efc23e4 Merge pull request #12 from lkvoong/CSC-2380
 58668d2 CSC-2380: update collectionobjects_bampfa_acquisitionsources.item to get displayname
 ae38c5c (tag: 6.7.2-rc2) revise CHANGELOG.txt and bump version to 6.7.2-rc2
 7b0cfe8 Merge pull request #11 from lkvoong/HMP-292
