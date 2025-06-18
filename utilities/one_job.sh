@@ -46,6 +46,6 @@ gzip -f ${SOLR_CACHE_DIR}/*.csv
 ##################################################################################
 # monitor solr datastores
 ##################################################################################
-if [[ `${HOME}/checkstatus.sh` ]] ; then ${HOME}/checkstatus.sh -v | mail -r "cspace-support@lists.berkeley.edu" -s "PROBLEM with solr refresh nightly refresh" -- ${SUPPORT_CONTACT} ; fi
+if [[ `${HOME}/checkstatus.sh` ]] ; then ${HOME}/checkstatus.sh -v | mail -r "cspace-support@lists.berkeley.edu" -s "[${HOSTNAME}] PROBLEM with solr refresh nightly refresh" -- ${SUPPORT_CONTACT} ; fi
 ${HOME}/checkstatus.sh -v >> ${SOLR_LOG_DIR}/refresh.log
 echo 'done with solr refresh' `date` >> ${SOLR_LOG_DIR}/refresh.log
