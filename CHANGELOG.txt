@@ -3,10 +3,15 @@ CHANGELOG for cspace-solr-ucb
 OK, it is not a *real* change log, but a list of changes resulting from git log
 sometimes with some human annotation after the fact.
 
-This is version 7.0.0
-Thu May 29 12:20:28 PDT 2025
+This is version 7.0.1-rc1
+Thu Jul 24 12:12:23 PDT 2025
 
-08ce6e0 (HEAD -> main, tag: 7.0.0-rc1, origin/main, origin/HEAD) revise CHANGELOG.txt and bump version to 7.0.0-rc1
+31e961c (HEAD -> main, origin/main, origin/HEAD) Merge pull request #14 from lkvoong/CSW-966b
+4f866ba CSW-966: update mediaAllImages query to fix run failure and efficiency
+e5afc39 Merge pull request #13 from felder/main
+1c2d481 checkstatus error emails should include host
+c1b2463 (tag: 7.0.0) revise CHANGELOG.txt and bump version to 7.0.0
+08ce6e0 (tag: 7.0.0-rc1) revise CHANGELOG.txt and bump version to 7.0.0-rc1
 efc23e4 Merge pull request #12 from lkvoong/CSC-2380
 58668d2 CSC-2380: update collectionobjects_bampfa_acquisitionsources.item to get displayname
 ae38c5c (tag: 6.7.2-rc2) revise CHANGELOG.txt and bump version to 6.7.2-rc2
