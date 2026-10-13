@@ -1,0 +1,6 @@
+duplicates: 1
+file1: 3
+file2: 4
+matched: 2
+max: 3
+unmatched: 1

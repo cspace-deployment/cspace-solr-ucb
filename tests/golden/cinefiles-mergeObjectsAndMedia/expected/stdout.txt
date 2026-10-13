@@ -1,0 +1,13 @@
+CSID for d4 not found in links
+docs unmatched with CSIDs: 1
+documents did not match a film: 1
+documents matched one or more films: 3
+films: 3
+link: 4
+link2: 4
+media (images, pdfs, warcs, etc.): 5
+media did not match a document: 2
+media matched a document: 2
+media: image: 3
+media: pdf: 2
+metadata: 5

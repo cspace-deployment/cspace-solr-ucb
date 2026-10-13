@@ -1,0 +1,21 @@
+objectcsid	objectnumber	mediacsid	description	name	creatorrefname	creator	blobcsid	copyrightstatement	identificationnumber	rightsholderrefname	rightsholder	contributor	approvedforweb	pahmatmslegacydepartment	objectstatus	primarydisplay	mimetype	md5
+obj-01	num-obj-01	media-b01a	photo	img.jpg		Photographer A	b01a		id-b01a				t		accessioned	f	image/jpeg	md5-b01a
+obj-01	num-obj-01	media-b01b	photo	img.jpg		Photographer A	b01b		id-b01b				t		accessioned	t	image/jpeg	md5-b01b
+obj-01	num-obj-01	media-b01c	Catalog Card front	img.jpg		Photographer A	b01c		id-b01c				t		accessioned	f	image/jpeg	md5-b01c
+obj-01	num-obj-01	media-b01d	photo	doc.pdf		Photographer A	b01d		id-b01d				t		accessioned	f	application/pdf	md5-b01d
+obj-01	num-obj-01	media-b01a	photo	img.jpg		Photographer A	b01a		id-b01a				t		accessioned	f	image/jpeg	md5-b01a
+obj-02	num-obj-02	media-b02a	photo	img.jpg		Photographer A	b02a		id-b02a				t		accessioned	f	image/jpeg	md5-b02a
+obj-03	num-obj-03	media-b03a	photo	img.jpg		Photographer A	b03a		id-b03a				t		accessioned	f	image/jpeg	md5-b03a
+obj-04	num-obj-04	media-b04a	photo	img.jpg		Photographer A	b04a		id-b04a				t		culturally sensitive	f	image/jpeg	md5-b04a
+obj-05	num-obj-05	media-b05a	photo	img.jpg		Photographer A	b05a		id-b05a				f		accessioned	f	image/jpeg	md5-b05a
+obj-05	num-obj-05	media-b05b	photo	img.jpg		Photographer A	b05b		id-b05b				t		accessioned	f	image/jpeg	md5-b05b
+obj-06	num-obj-06	media-b06a	photo	m.x3d		Photographer A	b06a		id-b06a				t		accessioned	f	model/x3d+xml	md5-b06a
+obj-06	num-obj-06	media-b06b	photo	img.jpg		Photographer A	b06b		id-b06b				f		accessioned	f	image/jpeg	md5-b06b
+obj-07	num-obj-07	media-b07a	photo	a.mp3		Photographer A	b07a		id-b07a				t		accessioned	f	audio/mpeg	md5-b07a
+obj-07	num-obj-07	media-b07b	photo	v.mp4		Photographer A	b07b		id-b07b				t		accessioned	f	video/mp4	md5-b07b
+obj-07	num-obj-07	media-b07c	photo	x.bin		Photographer A	b07c		id-b07c				t		accessioned	f	image/x-unknown	md5-b07c
+obj-09	num-obj-09	media-b09a	photo	img.jpg		Photographer A	b09a		id-b09a				t		accessioned	f	image/jpeg	md5-b09a
+obj-10	num-obj-10	media-b10a	photo	Ledger page 3		Photographer A	b10a		id-b10a				t		accessioned	f	image/jpeg	md5-b10a
+obj-11	num-obj-11	media-b11a	photo	img.jpg		Photographer A	b11a		id-b11a				t		accessioned	f	image/jpeg
+obj-12	num-obj-12	media-b12a	photo	img.jpg		Photographer A	b12a		id-b12a				t		accessioned	f	image/jpeg	md5-b12a
+obj-13	num-obj-13	media-b13a	photo	img.jpg		Photographer A	b13a		id-b13a				t		accessioned	f	image/jpeg	md5-b13a

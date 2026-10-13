@@ -1,0 +1,76 @@
+expected 19 columns:
+['obj-11', 'num-obj-11', 'media-b11a', 'photo', 'img.jpg', '', 'Photographer A', 'b11a', '', 'id-b11a', '', '', '', 't', '', 'accessioned', 'f', 'image/jpeg']
+objectcsid is blank: 
+hasimages: no: 3
+hasimages: yes: 9
+images: 12
+legacy documentation: 2
+matched: no: 1
+matched: yes: 11
+media: 21
+media available 3D: 1
+media available audio: 1
+media available document: 1
+media available image: 12
+media available legacy documentation: 2
+media available other media: 1
+media available video: 1
+metadata: 12
+mimetype application/pdf: 1
+mimetype audio/mpeg: 1
+mimetype image/jpeg: 14
+mimetype image/x-unknown: 1
+mimetype model/x3d+xml: 1
+mimetype video/mp4: 1
+notpublic: 3
+object restrictions: notpublic: 2
+object restrictions: notpublic,public: 1
+object restrictions: public: 8
+object type: images: 7
+object type: images,legacy documentation,other media: 1
+object type: images,other media: 1
+object type: legacy documentation: 1
+object type: other media: 1
+other media: 5
+primary display f: 18
+primary display t: 1
+public: 16
+skipped media (invalid row): 1
+expected 19 columns:
+['obj-11', 'num-obj-11', 'media-b11a', 'photo', 'img.jpg', '', 'Photographer A', 'b11a', '', 'id-b11a', '', '', '', 't', '', 'accessioned', 'f', 'image/jpeg']
+objectcsid is blank: 
+hasimages: no: 3
+hasimages: yes: 9
+images: 12
+legacy documentation: 2
+matched: no: 1
+matched: yes: 11
+media: 21
+media available 3D: 1
+media available audio: 1
+media available document: 1
+media available image: 12
+media available legacy documentation: 2
+media available other media: 1
+media available video: 1
+metadata: 12
+mimetype application/pdf: 1
+mimetype audio/mpeg: 1
+mimetype image/jpeg: 14
+mimetype image/x-unknown: 1
+mimetype model/x3d+xml: 1
+mimetype video/mp4: 1
+notpublic: 3
+object restrictions: notpublic: 2
+object restrictions: notpublic,public: 1
+object restrictions: public: 8
+object type: images: 7
+object type: images,legacy documentation,other media: 1
+object type: images,other media: 1
+object type: legacy documentation: 1
+object type: other media: 1
+other media: 5
+primary display f: 18
+primary display t: 1
+public: 16
+skipped media (invalid row): 1

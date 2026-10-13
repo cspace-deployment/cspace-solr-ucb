@@ -1,0 +1,7 @@
+error	b'4\tarchaeology\t1'
+1 errors seen (i.e. data row and header row w different counts.)
+column	types	tokens
+id	4	4
+objtype_s	2	3
+objcount_s	2	3
+note_s	1	2

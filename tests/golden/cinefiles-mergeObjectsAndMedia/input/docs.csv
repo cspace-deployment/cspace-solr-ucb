@@ -1,0 +1,5 @@
+doc_id	doctitle	author	c3	c4	c5	c6	c7	c8	c9	c10	c11	biblio	bx_info	cast_cr	costinfo	dist_co	filmog	illust	prod_co	tech_cr	pubdate_i
+d1	Document 1	Author X	v	v	v	v	v	v	v	v	v	t	f	t	f	f	f	f	f	t	1975
+d2	Document 2	Author X	v	v	v	v	v	v	v	v	v	f	f	f	f	f	f	f	f	f	1975
+d3	Document 3	Author X	v	v	v	v	v	v	v	v	v	t	t	t	t	t	t	t	t	t	1975
+d4	Document 4	Author X	v	v	v	v	v	v	v	v	v	f	f	f	f	f	f	f	f	f	1975
