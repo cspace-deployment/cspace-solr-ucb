@@ -1,0 +1,51 @@
+##################################################################################
+#
+# CRON TABLE (crontab) for Solr Pipelines, CSpace Tricoder, and BMU-related jobs
+# PAHMA hierarchies refresh, and other monitoring tasks
+#
+# m h  dom mon dow   command
+##################################################################################
+#
+# BMU-related jobs
+#
+##################################################################################
+# run BMU batch jobs (nightly or twice a day depending)
+##################################################################################
+# run BMUs (sequentially, starting one minute after 7pm)
+10 19 * * * ${HOME}/bin/bmu-run.sh > /dev/null 2>&1
+##################################################################################
+# BMU monitoring / report (i.e. send nightly emails)
+##################################################################################
+10 05 * * * ${HOME}/bin/bmu-monitor.sh
+##################################################################################
+# start the solr pipelines at 1 minute after midnight daily (takes 2 hours or so)
+##################################################################################
+01 21 * * * ${HOME}/one_job.sh
+##################################################################################
+# run the UCJEPS extract jobs weekly, on Saturday
+##################################################################################
+00 01 * * 6 ${HOME}/bin/run-ucjeps-extracts.sh > /dev/null 2>&1
+##################################################################################
+# run the UCJEPS archiving metadata update nightly
+##################################################################################
+01 04 * * * cd /cspace/merritt/batch ; ./update_metadata.sh > /dev/null 2>&1
+##################################################################################
+# run the tricoder upload job (with locks) weekdays 7am-10pm, 3 mins after the hour
+##################################################################################
+3 7-22 * * 1-5 cd /cspace/batch_barcode ; ./tricoderlock.sh > /dev/null 2>&1
+##################################################################################
+# check the denormalized pahma hierarchies, send email
+##################################################################################
+01 01 * * * ${HOME}/bin/hierarchies-check-status.sh
+##################################################################################
+# tidy up the blacklight databases every early monday
+##################################################################################
+#0 1 * * 1 ${HOME}/projects/radiance/dbcleanup-aws.sh 2>> /cspace/blacklight/dbcleanup.log
+##################################################################################
+# monitor webapp use, compute solr core stats, goaccess log analysis
+##################################################################################
+#05 04 * * * ${HOME}/bin/analytics.sh
+##################################################################################
+# generate list of cspace users for verification, monthly. send email.
+##################################################################################
+#00 00 01 * * ${HOME}/cspace-utils-ucb/scripts/dump-users.sh service_lead?@berkeley.edu > /dev/null 2>&1
