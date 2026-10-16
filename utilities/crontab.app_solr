@@ -1,3 +1,0 @@
-01 02 * * * /home/app_solr/one_job.sh >> /home/app_solr/refresh.log
-# copy the stats to the public directory so people can use them
-01 08  *   *   *     cp /var/solr/tmp/*count* /var/www/static/
