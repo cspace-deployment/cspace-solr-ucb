@@ -6,6 +6,9 @@ delim = '\t'
 
 blobs = defaultdict()
 seen = defaultdict()
+# the Media CSID for each Blob CSID, for blobmedia_ss (CSW-1027): the first Media record seen for the Blob,
+# so a Blob gets the same Media CSID in every document
+media_of_blob = {}
 
 # these are the csid and md5 key of the "restricted media" image in PAHMA's production binary repo
 # probably they should not be hardcoded; but I'm not sure how they should be obtained...
@@ -35,6 +38,22 @@ fcpcol = 39
 contextofusecol = 13
 objectnamecol = 8
 objectlegacydeptcol = 2
+
+
+def blobmedia(object_blobs):
+    """blobmedia_ss for one document (CSW-1027): '<blob CSID>:<media CSID>' for each Blob in its Blob fields
+    (blob_ss, card_ss, primaryimage_s, video_csid_ss, audio_csid_ss, d3_csid_ss), once each.
+    The placeholder image never carries a Media CSID: it stands in for restricted media."""
+    pairs = []
+    seen_blobs = set()
+    for column in ['images', 'legacy documentation', 'primary', 'video_csids', 'audio_csids', '3D_csids']:
+        for blobcsid in object_blobs[column]:
+            if blobcsid == '' or blobcsid in seen_blobs:
+                continue
+            seen_blobs.add(blobcsid)
+            mediacsid = '' if blobcsid == restricted_csid else media_of_blob.get(blobcsid, '')
+            pairs.append('%s:%s' % (blobcsid, mediacsid))
+    return '|'.join(pairs)
 
 
 def check(string_to_check, pattern):
@@ -116,6 +135,9 @@ with open(sys.argv[1], 'r') as MEDIA:
             blobcsid = restricted_csid
             md5 = restricted_md5
 
+        if blobcsid not in media_of_blob:
+            media_of_blob[blobcsid] = mediacsid
+
         if not check(blobs[objectcsid]['mimetypes'], mimetype):
             blobs[objectcsid]['mimetypes'].append(mimetype)
 
@@ -164,7 +186,7 @@ with open(sys.argv[2], 'r') as METADATA:
             continue
         # handle header line
         if id == 'id':
-            header = line + u'blob_ss,blob_md5_ss,card_ss,card_md5_ss,primaryimage_s,primaryimage_md5_s,imagetype_ss,restrictions_ss,hasimages_s,video_csid_ss,video_md5_ss,video_mimetype_ss,audio_csid_ss,audio_md5_ss,audio_mimetype_ss,d3_csid_ss,d3_md5_ss,d3_mimetype_ss,media_available_ss,mimetypes_ss'.split(',')
+            header = line + u'blob_ss,blob_md5_ss,card_ss,card_md5_ss,primaryimage_s,primaryimage_md5_s,imagetype_ss,restrictions_ss,hasimages_s,video_csid_ss,video_md5_ss,video_mimetype_ss,audio_csid_ss,audio_md5_ss,audio_mimetype_ss,d3_csid_ss,d3_md5_ss,d3_mimetype_ss,media_available_ss,mimetypes_ss,blobmedia_ss'.split(',')
             writer.writerow(header)
             continue
         count['metadata'] += 1
@@ -203,6 +225,7 @@ with open(sys.argv[2], 'r') as METADATA:
                 blobs[objectcsid]['images'] = [i for i in blobs[objectcsid]['images'] if i != restricted_csid]
             for column in 'images,image_md5s,legacy documentation,legacy documentation md5s,primary,primary_md5,type,restrictions,hasimages,video_csids,video_md5s,video_mimetypes,audio_csids,audio_md5s,audio_mimetypes,3D_csids,3D_md5s,3D_mimetypes,media_available,mimetypes'.split(','):
                 mediablobs.append('|'.join(blobs[objectcsid][column]))
+            mediablobs.append(blobmedia(blobs[objectcsid]))
 
             count['object type: ' + ','.join(sorted(blobs[objectcsid]['type']))] += 1
             count['object restrictions: ' + ','.join(sorted(blobs[objectcsid]['restrictions']))] += 1
@@ -214,6 +237,7 @@ with open(sys.argv[2], 'r') as METADATA:
             mediablobs += [u'public']
             mediablobs += [u'no']
             mediablobs += [u''] * 11
+            mediablobs += [u'']  # blobmedia_ss
 
         for i, m in enumerate(mediablobs):
             if type(m) == type(0):

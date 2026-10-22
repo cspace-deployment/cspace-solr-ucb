@@ -1,0 +1,8 @@
+blob_csid	media_csid	kind	access
+59a733dd-d641-4e1a-8552		card	public
+a-04	m-a04	audio	public
+b-01a	m-01a	image	public
+b-shared	m-shared	image	public
+c-01	m-c01	card	public
+d-04	m-d04	3D	public
+v-04	m-v04	video	public

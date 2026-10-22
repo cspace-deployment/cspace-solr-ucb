@@ -1,0 +1,5 @@
+{"cursorMark": "*", "fl": "id,audio_csid_ss,blob_ss,card_ss,d3_csid_ss,primaryimage_s,video_csid_ss,blobmedia_ss", "q": "*:*", "rows": "2000", "sort": "id asc", "wt": "json"}
+{"cursorMark": "2", "fl": "id,audio_csid_ss,blob_ss,card_ss,d3_csid_ss,primaryimage_s,video_csid_ss,blobmedia_ss", "q": "*:*", "rows": "2000", "sort": "id asc", "wt": "json"}
+{"cursorMark": "4", "fl": "id,audio_csid_ss,blob_ss,card_ss,d3_csid_ss,primaryimage_s,video_csid_ss,blobmedia_ss", "q": "*:*", "rows": "2000", "sort": "id asc", "wt": "json"}
+{"cursorMark": "6", "fl": "id,audio_csid_ss,blob_ss,card_ss,d3_csid_ss,primaryimage_s,video_csid_ss,blobmedia_ss", "q": "*:*", "rows": "2000", "sort": "id asc", "wt": "json"}
+{"cursorMark": "7", "fl": "id,audio_csid_ss,blob_ss,card_ss,d3_csid_ss,primaryimage_s,video_csid_ss,blobmedia_ss", "q": "*:*", "rows": "2000", "sort": "id asc", "wt": "json"}

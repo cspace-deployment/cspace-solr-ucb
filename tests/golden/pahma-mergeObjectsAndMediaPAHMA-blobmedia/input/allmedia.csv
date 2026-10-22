@@ -1,0 +1,11 @@
+objectcsid	objectnumber	mediacsid	description	name	creatorrefname	creator	blobcsid	copyrightstatement	identificationnumber	rightsholderrefname	rightsholder	contributor	approvedforweb	pahmatmslegacydepartment	objectstatus	primarydisplay	mimetype	md5
+obj-21	num-obj-21	media-21a	photo	img.jpg		Photographer A	b-shared		id-media-21a				t		accessioned	f	image/jpeg	md5-shared
+obj-22	num-obj-22	media-22a	photo	img.jpg		Photographer A	b-shared		id-media-22a				t		accessioned	f	image/jpeg	md5-shared
+obj-23	num-obj-23	media-23a	photo	img.jpg		Photographer A	b23a		id-media-23a				t		accessioned	t	image/jpeg	md5-b23a
+obj-23	num-obj-23	media-23b	Catalog Card front	img.jpg		Photographer A	b23b		id-media-23b				f		accessioned	f	image/jpeg	md5-b23b
+obj-24	num-obj-24	media-24a	photo	img.jpg		Photographer A	b24a		id-media-24a				f		accessioned	t	image/jpeg	md5-b24a
+obj-25	num-obj-25	media-25a	Catalog Card front	img.jpg		Photographer A			id-media-25a				t		accessioned	f		
+obj-25	num-obj-25	media-25b	photo	img.jpg		Photographer A	b25b		id-media-25b				t		accessioned	f	image/jpeg	md5-b25b
+obj-26	num-obj-26	media-26a	photo	img.jpg		Photographer A	b26		id-media-26a				t		accessioned	f	image/jpeg	md5-b26
+obj-26	num-obj-26	media-26b	photo	img.jpg		Photographer A	b26		id-media-26b				t		accessioned	f	image/jpeg	md5-b26
+obj-27	num-obj-27	media-27a	photo	img.jpg		Photographer A	b27a		id-media-27a				t		accessioned	t	image/jpeg	md5-b27a

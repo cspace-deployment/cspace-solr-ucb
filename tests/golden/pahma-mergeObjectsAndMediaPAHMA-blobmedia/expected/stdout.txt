@@ -1,0 +1,38 @@
+hasimages: yes: 7
+images: 8
+legacy documentation: 2
+matched: yes: 7
+media: 11
+media available image: 8
+media available legacy documentation: 2
+metadata: 7
+mimetype : 1
+mimetype image/jpeg: 9
+notpublic: 2
+object restrictions: notpublic: 1
+object restrictions: notpublic,public: 1
+object restrictions: public: 5
+object type: images: 5
+object type: images,legacy documentation: 2
+primary display f: 7
+primary display t: 3
+public: 8
+hasimages: yes: 7
+images: 8
+legacy documentation: 2
+matched: yes: 7
+media: 11
+media available image: 8
+media available legacy documentation: 2
+metadata: 7
+mimetype : 1
+mimetype image/jpeg: 9
+notpublic: 2
+object restrictions: notpublic: 1
+object restrictions: notpublic,public: 1
+object restrictions: public: 5
+object type: images: 5
+object type: images,legacy documentation: 2
+primary display f: 7
+primary display t: 3
+public: 8
