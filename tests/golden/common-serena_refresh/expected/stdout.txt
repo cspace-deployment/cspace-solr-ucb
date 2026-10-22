@@ -1,0 +1,133 @@
+== ok
+ping: ok
+work/servable-list.pahma.new.tsv: 7 rows from 7 documents of Solr core pahma-public
+  3D public: 1
+  audio public: 1
+  card public: 2
+  image public: 2
+  video public: 1
+start: pahma-2026-10-22-1 (new), state started
+upload: servable-list.pahma.2026-10-22.tsv, 7 rows, state received
+check: requested, state checking
+refresh pahma-2026-10-22-1: updated
+  check: passed; 7 rows; 1 added, 0 removed, 0 changed; delta 0.2% (threshold 5.0%); 0 problem(s)
+  update: 0 deleted, 1 written, 6 unchanged
+Serena pahma: updated
+exit 0
+== check-fails
+ping: ok
+work/servable-list.pahma.new.tsv: 7 rows from 7 documents of Solr core pahma-public
+  3D public: 1
+  audio public: 1
+  card public: 2
+  image public: 2
+  video public: 1
+start: pahma-2026-10-22-2 (new), state started
+upload: servable-list.pahma.2026-10-22.tsv, 7 rows, state received
+check: requested, state checking
+refresh pahma-2026-10-22-2: check_failed
+  check: failed; 7 rows; 7 added, 0 removed, 0 changed; delta 100.0% (threshold 5.0%); 1 problem(s)
+    line 3, kind: isn't image, card, audio, video, 3D or pdf
+Serena pahma: FAILED: the refresh was not updated
+exit 1
+== busy
+ping: ok
+work/servable-list.pahma.new.tsv: 7 rows from 7 documents of Solr core pahma-public
+  3D public: 1
+  audio public: 1
+  card public: 2
+  image public: 2
+  video public: 1
+start: 409 Out of order: the previous refresh is still being checked; trying again in 0s
+start: pahma-2026-10-22-3 (new), state started
+PUT /etl/v1/museums/pahma/refreshes/pahma-2026-10-22-3/servable-list: 503 Storage unavailable: try again; retrying in 0s
+upload: servable-list.pahma.2026-10-22.tsv, 7 rows, state received
+check: requested, state checking
+refresh pahma-2026-10-22-3: updated
+  check: passed; 7 rows; 1 added, 0 removed, 0 changed; delta 0.2% (threshold 5.0%); 0 problem(s)
+  update: 0 deleted, 1 written, 6 unchanged
+Serena pahma: updated
+exit 0
+== stuck
+ping: ok
+work/servable-list.pahma.new.tsv: 7 rows from 7 documents of Solr core pahma-public
+  3D public: 1
+  audio public: 1
+  card public: 2
+  image public: 2
+  video public: 1
+start: pahma-2026-10-22-4 (new), state started
+upload: servable-list.pahma.2026-10-22.tsv, 7 rows, state received
+check: requested, state checking
+refresh pahma-2026-10-22-4: checking
+Serena pahma: FAILED: the refresh is still checking after 1s; carrying on without Serena
+exit 1
+== wrong-museum
+Serena pahma: FAILED: ping: the token belongs to 'bampfa', not 'pahma'
+exit 1
+== no-list
+ping: ok
+make_servable_list: work/servable-list.pahma.new.tsv not written: 1 problem(s); the first 1:
+  document 11: Blob b-11 in blob_ss has no Media CSID in blobmedia_ss
+Serena pahma: FAILED: the servable list could not be made; no refresh was started
+exit 1
+== token-readable-by-others
+Serena pahma: ./tokens/pahma.token must be readable only by its owner (mode 600)
+exit 2
+== unreachable
+GET /etl/v1/ping: ConnectionRefusedError: [Errno N] Connection refused; retrying in 0s
+GET /etl/v1/ping: ConnectionRefusedError: [Errno N] Connection refused; retrying in 0s
+GET /etl/v1/ping: ConnectionRefusedError: [Errno N] Connection refused; retrying in 0s
+Serena pahma: FAILED: GET /etl/v1/ping failed after 3 retries: ConnectionRefusedError: [Errno N] Connection refused
+exit 1
+== not-https
+Serena pahma: SERENA_BASE_URL must be an https URL
+exit 2
+servable-list.pahma.2026-10-22.tsv
+== serena-refresh.sh: ok
+Serena pahma: skipped (no SERENA_BASE_URL or no token file for pahma)
+exit 0
+== serena-refresh.sh: ok
+refresh pahma-2026-10-22-5: updated
+Serena pahma: updated
+exit 0
+== serena-refresh.sh: check-fails
+refresh pahma-2026-10-22-6: check_failed
+Serena pahma: FAILED: the refresh was not updated
+exit 1
+== serena-refresh.sh: check-fails
+refresh pahma-2026-10-22-7: check_failed
+Serena pahma: FAILED: the refresh was not updated
+exit 1
+== mail
+mail -r cspace-support@lists.berkeley.edu -s PROBLEM pahma Serena refresh failed -- support@example.edu
+ping: ok
+./home/solrdatasources/pahma/serena/servable-list.pahma.new.tsv: 7 rows from 7 documents of Solr core pahma-public
+  3D public: 1
+  audio public: 1
+  card public: 2
+  image public: 2
+  video public: 1
+start: pahma-2026-10-22-6 (new), state started
+upload: servable-list.pahma.2026-10-22.tsv, 7 rows, state received
+check: requested, state checking
+refresh pahma-2026-10-22-6: check_failed
+  check: failed; 7 rows; 7 added, 0 removed, 0 changed; delta 100.0% (threshold 5.0%); 1 problem(s)
+    line 3, kind: isn't image, card, audio, video, 3D or pdf
+Serena pahma: FAILED: the refresh was not updated
+mail -r cspace-support@lists.berkeley.edu -s PROBLEM pahma Serena refresh failed -- etl-team@example.edu
+ping: ok
+./home/solrdatasources/pahma/serena/servable-list.pahma.new.tsv: 7 rows from 7 documents of Solr core pahma-public
+  3D public: 1
+  audio public: 1
+  card public: 2
+  image public: 2
+  video public: 1
+start: pahma-2026-10-22-7 (new), state started
+upload: servable-list.pahma.2026-10-22.tsv, 7 rows, state received
+check: requested, state checking
+refresh pahma-2026-10-22-7: check_failed
+  check: failed; 7 rows; 7 added, 0 removed, 0 changed; delta 100.0% (threshold 5.0%); 1 problem(s)
+    line 3, kind: isn't image, card, audio, video, 3D or pdf
+Serena pahma: FAILED: the refresh was not updated
+pahma.serena.lock

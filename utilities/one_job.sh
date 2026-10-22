@@ -34,6 +34,13 @@ echo 'starting solr refresh' `date` >> ${SOLR_LOG_DIR}/refresh.log
 ./oj.pahma.sh
 ./oj.ucjeps.sh
 ##################################################################################
+# wait for the museums' Serena steps (CSW-1027), which run in the background,
+# so the job's end time includes them. Each holds its lock file while it runs.
+##################################################################################
+for lock in "${SOLR_LOG_DIR}"/*.serena.lock; do
+  [[ -e "${lock}" ]] && flock "${lock}" true
+done
+##################################################################################
 # gzip any ungzipped files in 'solr cache'
 ##################################################################################
 gzip -f ${SOLR_CACHE_DIR}/*.csv
