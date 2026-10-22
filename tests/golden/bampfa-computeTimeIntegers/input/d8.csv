@@ -1,0 +1,9 @@
+c0_s	c1_s	c2_s	c3_s	c4_s	c5_s	c6_s	c7_s	c8_s	c9_s	c10_s	c11_s	c12_s	c13_s	c14_s	c15_s	c16_s	c17_s	c18_s	c19_s	datemadeverbatim_s	datemade_dt	acquisitiondate_dt	c23_s
+csid-001	b	b	b	b	b	b	b	b	b	b	b	b	b	b	b	b	b	b	b	1950	1950-01-01	1999-05-05	b
+csid-002	b	b	b	b	b	b	b	b	b	b	b	b	b	b	b	b	b	b	b	1950-1960		1999-05-05	b
+csid-003	b	b	b	b	b	b	b	b	b	b	b	b	b	b	b	b	b	b	b	ca. 03/1922	0000-01-01		b
+csid-004	b	b	b	b	b	b	b	b	b	b	b	b	b	b	b	b	b	b	b	1950-55			b
+csid-005	b	b	b	b	b	b	b	b	b	b	b	b	b	b	b	b	b	b	b	no date			b
+csid-006	b	b	b	b	b	b	b	b	b	b	b	b	b	b	b	b	b	b	b	300 BC	0300-01-01		b
+csid-007	b	b	b	b	b	b	b	b	b	b	b	b	b	b	b	b	b	b	b	300 BC	1950-01-01		b
+csid-008	b	b	b	b	b	b	b	b	b	b	b	b	b	b	b	b	b	b	b	future	2999-01-01		b

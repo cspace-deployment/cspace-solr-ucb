@@ -1,0 +1,38 @@
+name: tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  golden:
+    name: Golden-file tests
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
+        with:
+          python-version: "3.10"
+      - name: Run golden-file tests
+        run: tests/run_golden.sh
+
+  shellcheck:
+    name: ShellCheck
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+        with:
+          persist-credentials: false
+      - name: ShellCheck test harness (blocking)
+        run: shellcheck tests/run_golden.sh tests/golden/*/run.sh
+      - name: ShellCheck pipeline scripts (report only, errors)
+        continue-on-error: true
+        run: |
+          find . -name '*.sh' -not -path './.git/*' -not -path './tests/*' -print0 \
+            | xargs -0 shellcheck --severity=error

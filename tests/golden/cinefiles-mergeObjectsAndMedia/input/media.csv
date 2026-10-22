@@ -1,0 +1,5 @@
+objectcsid	objectnumber	mediacsid	description	filename	creatorrefname	creator	blobcsid	copyrightstatement	identificationnumber	rightsholderrefname	rightsholder	contributor	mimetype	md5
+csid-d1	n	m-blob-1	d	p1.jpg			blob-1						image/jpeg	md5-blob-1
+csid-d1	n	m-blob-2	d	p2.pdf			blob-2						application/pdf	md5-blob-2
+csid-d1	n	m-blob-3	d	w.jsonl			blob-3						application/json	md5-blob-3
+csid-d2	n	m-blob-4	d	p4.pdf			blob-4						application/pdf	md5-blob-4

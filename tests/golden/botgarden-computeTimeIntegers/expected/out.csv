@@ -1,0 +1,4 @@
+id	title_s	collectiondate_dt	accessiondates_dts	updated_dt	collectiondate_i	accessiondates_is	updated_i
+1	a	1950-06-01T00:00:00Z	2001-01-01T00:00:00Z	2020-01-02T03:04:05Z	1950	2001	2020
+2	b			2020-01-02T03:04:05Z			2020
+3	c	0099-01-01T00:00:00Z	1890	2020-01-02T03:04:05Z	0099	1890	2020
