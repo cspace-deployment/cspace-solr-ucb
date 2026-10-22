@@ -1,0 +1,17 @@
+from-file.tsv: 7 rows from 7 documents of docs.jsonl
+  3D public: 1
+  audio public: 1
+  card public: 2
+  image public: 2
+  video public: 1
+from-solr.tsv: 7 rows from 7 documents of Solr core pahma-public
+  3D public: 1
+  audio public: 1
+  card public: 2
+  image public: 2
+  video public: 1
+from Solr: the same list
+bad documents: exit 1
+bad.tsv not written
+unconfigured museum: exit 2
+usage: exit 2

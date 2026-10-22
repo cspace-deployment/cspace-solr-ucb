@@ -1,0 +1,5 @@
+{"id": "11", "blob_ss": ["b-11"]}
+{"id": "12", "blob_ss": ["b-12"], "blobmedia_ss": ["b-12:m-12a"]}
+{"id": "13", "blob_ss": ["b-12"], "blobmedia_ss": ["b-12:m-12b"]}
+{"id": "14", "blob_ss": ["bad csid"], "blobmedia_ss": ["bad csid:m-14"]}
+{"id": "15", "card_ss": ["c-15"], "blobmedia_ss": ["c-15"]}

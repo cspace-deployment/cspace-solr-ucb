@@ -1,0 +1,8 @@
+make_servable_list: bad.tsv not written: 5 problem(s); the first 5:
+  document 11: Blob b-11 in blob_ss has no Media CSID in blobmedia_ss
+  document 13: Blob b-12 is paired with Media m-12b here and m-12a in another document
+  document 15: blobmedia_ss value 'c-15' has no ":"
+  document 15: Blob c-15 in card_ss has no Media CSID in blobmedia_ss
+  Blob CSID 'bad csid' is not 1 to 64 letters, digits and hyphens
+make_servable_list: no servable list configuration for 'bampfa' (configured: pahma)
+Usage: make-servable-list.sh <tenant> <output file>
