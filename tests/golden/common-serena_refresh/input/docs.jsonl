@@ -1,0 +1,7 @@
+{"id": "1", "blob_ss": ["b-01a", "b-shared"], "primaryimage_s": "b-01a", "card_ss": ["c-01"], "blobmedia_ss": ["b-01a:m-01a", "b-shared:m-shared", "c-01:m-c01"]}
+{"id": "2", "blob_ss": ["b-shared"], "blobmedia_ss": ["b-shared:m-shared"]}
+{"id": "3", "blob_ss": ["59a733dd-d641-4e1a-8552"], "card_ss": ["59a733dd-d641-4e1a-8552"], "primaryimage_s": "59a733dd-d641-4e1a-8552", "blobmedia_ss": ["59a733dd-d641-4e1a-8552:"]}
+{"id": "4", "d3_csid_ss": ["d-04"], "audio_csid_ss": ["a-04"], "video_csid_ss": ["v-04"], "blobmedia_ss": ["d-04:m-d04", "a-04:m-a04", "v-04:m-v04"]}
+{"id": "5", "blob_ss": ["c-01"], "blobmedia_ss": ["c-01:m-c01"]}
+{"id": "6"}
+{"id": "7", "blob_ss": ["d-04"], "blobmedia_ss": ["d-04:m-d04"]}
