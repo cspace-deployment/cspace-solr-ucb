@@ -209,6 +209,10 @@ with open(sys.argv[2], 'r') as METADATA:
                         # if the *object* is one of the restricted type, remove *all* image media, and use the placeholder
                         blobs[objectcsid]['images'] = [ restricted_csid ]
                         blobs[objectcsid]['image_md5s'] = [ restricted_md5 ]
+                        # the primary image is one of those images: it gets the placeholder too
+                        if blobs[objectcsid]['primary']:
+                            blobs[objectcsid]['primary'] = [ restricted_csid ]
+                            blobs[objectcsid]['primary_md5'] = [ restricted_md5 ]
 
             # insert list of blobs, etc. as final columns
             if not blobs[objectcsid]['hasimages'] == 'yes': blobs[objectcsid]['hasimages'] = 'no'
