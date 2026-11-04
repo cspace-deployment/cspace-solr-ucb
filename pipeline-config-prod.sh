@@ -2,7 +2,7 @@
 
 export BAMPFA_SERVER="localhost port=54321"
 export BAMPFA_USER="bampfa"
-export BAMPFA_CONTACT="osanchez@berkeley.edu"
+export BAMPFA_CONTACT="john.alexander@berkeley.edu"
 
 export BOTGARDEN_SERVER="localhost port=54321"
 export BOTGARDEN_USER="ucbg"
@@ -20,7 +20,7 @@ export UCJEPS_SERVER="localhost port=54321"
 export UCJEPS_USER="ucjeps"
 export UCJEPS_CONTACT="ucjeps-it@berkeley.edu"
 
-export TECH_LEAD="jblowe@berkeley.edu"
+export TECH_LEAD="richard.millet@berkeley.edu"
 export SUPPORT_CONTACT="cspace-support@lists.berkeley.edu"
 
 source ${HOME}/set_platform.sh
