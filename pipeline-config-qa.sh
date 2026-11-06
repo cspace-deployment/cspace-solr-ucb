@@ -35,7 +35,8 @@ export SUPPORT_CONTACT="lkv@berkeley.edu"
 # outside the repository, owned by the app user, mode 600 (like .pgpass). Never put a token in this file.
 # SERENA_CONTACT: the addresses mailed when a Serena step fails (the ETL team); SUPPORT_CONTACT when empty.
 # Museum contacts are never mailed about the Serena step.
-export SERENA_BASE_URL=""
+# QA: Serena QA (stage 2), connected to PAHMA QA. Only museums with a token file take part.
+export SERENA_BASE_URL="https://serena-qa.rtl-berkeley-cspace.net"
 export SERENA_CONTACT=""
 export SERENA_TOKEN_DIR="${HOME}/.serena"
 
