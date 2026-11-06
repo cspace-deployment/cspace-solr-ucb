@@ -1,0 +1,55 @@
+== ok
+GET /etl/v1/ping token=ok
+POST /etl/v1/museums/pahma/refreshes token=ok
+PUT /etl/v1/museums/pahma/refreshes/pahma-2026-10-22-1/servable-list token=ok type=text/tab-separated-values encoding=gzip rows=7 sha256=matches header='blob_csid\tmedia_csid\tkind\taccess'
+POST /etl/v1/museums/pahma/refreshes/pahma-2026-10-22-1/check token=ok
+GET /etl/v1/museums/pahma/refreshes/pahma-2026-10-22-1 token=ok
+GET /etl/v1/museums/pahma/refreshes/pahma-2026-10-22-1 token=ok
+== check-fails
+GET /etl/v1/ping token=ok
+POST /etl/v1/museums/pahma/refreshes token=ok
+PUT /etl/v1/museums/pahma/refreshes/pahma-2026-10-22-2/servable-list token=ok type=text/tab-separated-values encoding=gzip rows=7 sha256=matches header='blob_csid\tmedia_csid\tkind\taccess'
+POST /etl/v1/museums/pahma/refreshes/pahma-2026-10-22-2/check token=ok
+GET /etl/v1/museums/pahma/refreshes/pahma-2026-10-22-2 token=ok
+== busy
+GET /etl/v1/ping token=ok
+POST /etl/v1/museums/pahma/refreshes token=ok
+POST /etl/v1/museums/pahma/refreshes token=ok
+PUT /etl/v1/museums/pahma/refreshes/pahma-2026-10-22-3/servable-list token=ok -> 503
+PUT /etl/v1/museums/pahma/refreshes/pahma-2026-10-22-3/servable-list token=ok type=text/tab-separated-values encoding=gzip rows=7 sha256=matches header='blob_csid\tmedia_csid\tkind\taccess'
+POST /etl/v1/museums/pahma/refreshes/pahma-2026-10-22-3/check token=ok
+GET /etl/v1/museums/pahma/refreshes/pahma-2026-10-22-3 token=ok
+GET /etl/v1/museums/pahma/refreshes/pahma-2026-10-22-3 token=ok
+== stuck
+GET /etl/v1/ping token=ok
+POST /etl/v1/museums/pahma/refreshes token=ok
+PUT /etl/v1/museums/pahma/refreshes/pahma-2026-10-22-4/servable-list token=ok type=text/tab-separated-values encoding=gzip rows=7 sha256=matches header='blob_csid\tmedia_csid\tkind\taccess'
+POST /etl/v1/museums/pahma/refreshes/pahma-2026-10-22-4/check token=ok
+GET /etl/v1/museums/pahma/refreshes/pahma-2026-10-22-4 token=ok
+== wrong-museum
+GET /etl/v1/ping token=ok
+== no-list
+GET /etl/v1/ping token=ok
+== token-readable-by-others
+== unreachable
+== not-https
+== serena-refresh.sh: ok
+== serena-refresh.sh: ok
+GET /etl/v1/ping token=ok
+POST /etl/v1/museums/pahma/refreshes token=ok
+PUT /etl/v1/museums/pahma/refreshes/pahma-2026-10-22-5/servable-list token=ok type=text/tab-separated-values encoding=gzip rows=7 sha256=matches header='blob_csid\tmedia_csid\tkind\taccess'
+POST /etl/v1/museums/pahma/refreshes/pahma-2026-10-22-5/check token=ok
+GET /etl/v1/museums/pahma/refreshes/pahma-2026-10-22-5 token=ok
+GET /etl/v1/museums/pahma/refreshes/pahma-2026-10-22-5 token=ok
+== serena-refresh.sh: check-fails
+GET /etl/v1/ping token=ok
+POST /etl/v1/museums/pahma/refreshes token=ok
+PUT /etl/v1/museums/pahma/refreshes/pahma-2026-10-22-6/servable-list token=ok type=text/tab-separated-values encoding=gzip rows=7 sha256=matches header='blob_csid\tmedia_csid\tkind\taccess'
+POST /etl/v1/museums/pahma/refreshes/pahma-2026-10-22-6/check token=ok
+GET /etl/v1/museums/pahma/refreshes/pahma-2026-10-22-6 token=ok
+== serena-refresh.sh: check-fails
+GET /etl/v1/ping token=ok
+POST /etl/v1/museums/pahma/refreshes token=ok
+PUT /etl/v1/museums/pahma/refreshes/pahma-2026-10-22-7/servable-list token=ok type=text/tab-separated-values encoding=gzip rows=7 sha256=matches header='blob_csid\tmedia_csid\tkind\taccess'
+POST /etl/v1/museums/pahma/refreshes/pahma-2026-10-22-7/check token=ok
+GET /etl/v1/museums/pahma/refreshes/pahma-2026-10-22-7 token=ok
