@@ -41,6 +41,9 @@ API = '/etl/v1'
 CONNECT_TIMEOUT = 10
 READ_TIMEOUT = 60
 RETRIES = 3
+# Serena's WAF (AWS's common rule set, NoUserAgent_HEADER) answers a request without a User-Agent with a bare 403,
+# before Serena sees it, and http.client sends none: QA's first Serena step failed that way ("ping: 403", Nov 5, 2026).
+USER_AGENT = 'cspace-solr-ucb-serena-refresh/1 (+https://github.com/cspace-deployment/cspace-solr-ucb)'
 RETRY_DELAY = float(os.environ.get('SERENA_RETRY_DELAY_SECONDS', '2'))  # doubled for each retry
 DEFAULT_POLL_SECONDS = float(os.environ.get('SERENA_POLL_SECONDS', '15'))  # until Serena says
 DEFAULT_STEP_TIMEOUT_SECONDS = 1800
@@ -63,6 +66,8 @@ class Answer:
         """Serena's application/problem+json, in a line."""
         title = self.json.get('title', '')
         detail = self.json.get('detail', '')
+        if not title and not detail:
+            return '%s (no problem details: not Serena\'s answer, perhaps its WAF or load balancer)' % self.status
         return '%s %s%s' % (self.status, title, (': ' + detail) if detail else '')
 
 
@@ -88,7 +93,8 @@ class Serena:
         try:
             conn.connect()
             conn.sock.settimeout(READ_TIMEOUT)
-            all_headers = {'Authorization': 'Bearer ' + self.token, 'Accept': 'application/json'}
+            all_headers = {'Authorization': 'Bearer ' + self.token, 'Accept': 'application/json',
+                           'User-Agent': USER_AGENT}
             all_headers.update(headers or {})
             conn.request(method, self.prefix + path, body=body, headers=all_headers)
             response = conn.getresponse()
