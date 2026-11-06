@@ -38,6 +38,20 @@ class Handler(BaseHTTPRequestHandler):
             log.write('%s %s token=%s%s\n' % (self.command, urllib.parse.urlsplit(self.path).path, who,
                                               (' ' + text) if text else ''))
 
+    def waf_blocks(self):
+        """Like the WAF in front of Serena (AWS's common rule set, NoUserAgent_HEADER): a request without a
+        User-Agent gets a bare 403 that never reaches Serena."""
+        if self.headers.get('User-Agent'):
+            return False
+        self.note('-> 403 (WAF: no User-Agent)')
+        data = b'<html><body>403 Forbidden</body></html>'
+        self.send_response(403)
+        self.send_header('Content-Type', 'text/html')
+        self.send_header('Content-Length', str(len(data)))
+        self.end_headers()
+        self.wfile.write(data)
+        return True
+
     def send(self, status, body):
         data = json.dumps(body).encode()
         self.send_response(status)
@@ -61,6 +75,8 @@ class Handler(BaseHTTPRequestHandler):
             cursor = urllib.parse.parse_qs(urllib.parse.urlsplit(self.path).query)['cursorMark'][0]
             self.send(200, {'response': {'docs': docs if cursor == '*' else []}, 'nextCursorMark': 'end'
                             if cursor == '*' else cursor})
+            return
+        if self.waf_blocks():
             return
         self.note()
         if self.headers.get('Authorization') != 'Bearer ' + TOKEN:
@@ -92,6 +108,8 @@ class Handler(BaseHTTPRequestHandler):
 
     def do_POST(self):
         path = urllib.parse.urlsplit(self.path).path
+        if self.waf_blocks():
+            return
         self.note()
         if self.headers.get('Authorization') != 'Bearer ' + TOKEN:
             self.problem(401, 'Unauthorized')
@@ -111,6 +129,8 @@ class Handler(BaseHTTPRequestHandler):
     def do_PUT(self):
         path = urllib.parse.urlsplit(self.path).path
         body = self.rfile.read(int(self.headers.get('Content-Length', 0)))
+        if self.waf_blocks():
+            return
         if scenario() == 'busy' and self.count('upload') == 1:
             self.note('-> 503')
             self.problem(503, 'Storage unavailable', 'try again')
