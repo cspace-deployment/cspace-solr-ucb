@@ -18,9 +18,18 @@
       add exclusions for deleted relations, blobs, persons
 */
 
-DROP VIEW utils.bampfa_collectionitems_vw;
+BEGIN;
 
+-- drop view utils.bampfa_collectionitems_vw
+--
+DROP VIEW IF EXISTS utils.bampfa_collectionitems_vw;
+
+-- create view utils.bampfa_collectionitems_vw
+--
 CREATE VIEW utils.bampfa_collectionitems_vw AS
+
+-- get collection object data
+--
 WITH collectionobjects AS (
   SELECT
     cc.id,
@@ -55,26 +64,34 @@ WITH collectionobjects AS (
   WHERE mcc.lifecyclestate <> 'deleted'	-- exclude deleted objects
 ),
 
+-- get all artists data
+-- use pc.refname to account for stale ppg.bampfaobjectproductionperson refnames
+-- join on refname up until shortidentifier for persons where displayname has been updated in persons_common
+-- but ppg.bampfaobjectproductionperson has not been updated
+--
 artists AS (
   SELECT
     hppg.parentid AS objectid,
+    (ARRAY_AGG(pc.id ORDER BY hppg.pos))[1] AS firstpersonid,	-- get id of first non-deleted, non-null person
     STRING_AGG(
-      GETDISPL(ppg.bampfaobjectproductionperson) ||
+      GETDISPL(pc.refname) ||
       COALESCE(' (' || NULLIF(GETDISPL(ppg.bampfaobjectproductionpersonqualifier), '') || ')', ''),
       '; ' ORDER BY hppg.pos) AS artistcalc
   FROM hierarchy hppg	-- get all artists
   JOIN bampfaobjectproductionpersongroup ppg ON hppg.id = ppg.id
-  JOIN persons_common pc ON ppg.bampfaobjectproductionperson = pc.refname
+  JOIN persons_common pc ON substring(pc.refname from '^[^'']+') = substring(ppg.bampfaobjectproductionperson from '^[^'']+')
   JOIN misc mpc ON pc.id = mpc.id
   WHERE mpc.lifecyclestate <> 'deleted'	-- exclude deleted artists
     AND hppg.name = 'collectionobjects_bampfa:bampfaObjectProductionPersonGroupList'
-    AND ppg.bampfaobjectproductionperson IS NOT NULL	-- exclude null artists
-  GROUP by hppg.parentid
+  GROUP BY hppg.parentid
 ),
 
+-- get artist data for first non-deleted, non-null artist
+-- pos for birth and dead dates are all null, and there are no parentid duplicates
+--
 firstartists AS (
   SELECT
-    hppg.parentid AS objectid,
+    a.objectid,
     CASE
       WHEN NULLIF(pc.birthplace, '') IS NULL THEN pcn.item
       WHEN pcn.item = pc.birthplace THEN pcn.item
@@ -84,10 +101,8 @@ firstartists AS (
     pb.datesactive,
     pb.permissiontoreproduce AS permissiontoreproduceartist,
     pb.copyrightcredit AS copyrightcreditartist
-  FROM hierarchy hppg        -- get first artist
-    JOIN bampfaobjectproductionpersongroup ppg ON hppg.id = ppg.id
-    JOIN persons_common pc ON ppg.bampfaobjectproductionperson = pc.refname
-    JOIN misc mpc ON pc.id = mpc.id
+  FROM artists a
+    JOIN persons_common pc ON a.firstpersonid = pc.id
     LEFT OUTER JOIN persons_common_nationalities pcn      -- get first nationality of first artist
       ON pc.id = pcn.id
       AND pcn.pos = 0
@@ -95,17 +110,16 @@ firstartists AS (
     LEFT OUTER JOIN hierarchy hbdg        -- get birth date of first artist
       ON pc.id = hbdg.parentid
       AND hbdg.name = 'persons_common:birthDateGroup'
-    LEFT OUTER JOIN structuredDateGroup bdg ON hbdg.id = bdg.id
+    LEFT OUTER JOIN structureddategroup bdg ON hbdg.id = bdg.id
     LEFT OUTER JOIN hierarchy hddg        -- get death date of first artist
       ON pc.id = hddg.parentid
       AND hddg.name = 'persons_common:deathDateGroup'
-    LEFT OUTER JOIN structuredDateGroup ddg ON hddg.id = ddg.id
-  WHERE mpc.lifecyclestate <> 'deleted'	-- exclude deleted persons
-    AND hppg.name = 'collectionobjects_bampfa:bampfaObjectProductionPersonGroupList'
-    AND hppg.pos = 0
+    LEFT OUTER JOIN structureddategroup ddg ON hddg.id = ddg.id
 ),
 
-subjectthemes AS (	-- get first five subjectthemes
+-- get first 5 subjectthemes
+--
+subjectthemes AS (
   SELECT
     id,
     MAX(CASE WHEN pos = 0 THEN GETDISPL(item) END) AS subjectone,
@@ -118,7 +132,9 @@ subjectthemes AS (	-- get first five subjectthemes
   GROUP BY id
 ),
 
-collections AS (	-- get first 3 collections
+-- get first 3 collections
+--
+collections AS (
   SELECT
     id,
     MAX(CASE WHEN pos = 0 THEN GETDISPL(item) END) AS collection1,
@@ -129,7 +145,9 @@ collections AS (	-- get first 3 collections
   GROUP BY id
 ),
 
-periodstyles AS (	-- get first 5 periodstyles
+-- get first 5 periodstyles
+--
+periodstyles AS (
   SELECT
     id,
     MAX(CASE WHEN pos = 0 THEN GETDISPL(item) END) AS periodstyle1,
@@ -142,59 +160,47 @@ periodstyles AS (	-- get first 5 periodstyles
   GROUP BY id
 ),
 
-objectmedia AS (	-- get all object media
+-- get all object media
+-- some objects have > 1 media records with imagenumber = 1
+-- some objects have media records, and none have imagenumber = 1
+-- media_common.datemodified and media_common.datecreated are all null
+-- therefore, must use collectionspace_core.updatedat for media records
+-- to get most recent media record with imagenumber = 1
+--
+objectmedia AS (
   SELECT
-    co.objectcsid,
-    mc.id as mediaid,
-    mc.blobcsid
-  FROM collectionobjects co
-    JOIN relations_common rc ON co.objectcsid = rc.objectcsid
+    rc.objectcsid,
+    COUNT(DISTINCT mc.id) AS imagecount,	-- get imagecount for non-deleted media
+    (ARRAY_AGG(mc.blobcsid ORDER BY csc.updatedat DESC, mc.blobcsid DESC)
+       FILTER (WHERE mb.imagenumber = 1))[1] AS image1blobcsid,	-- get blobcsid for imagenumber 1
+    (ARRAY_AGG(mb.websitedisplaylevel ORDER BY csc.updatedat DESC, mc.blobcsid DESC)
+       FILTER (WHERE mb.imagenumber = 1))[1] AS image1displevel	-- get displevel for imagenumber 1
+  FROM relations_common rc
     JOIN misc mrc ON rc.id = mrc.id
     JOIN hierarchy hmc ON rc.subjectcsid = hmc.name
     JOIN media_common mc ON hmc.id = mc.id
     JOIN misc mmc ON mc.id = mmc.id
     JOIN hierarchy hbc ON mc.blobcsid = hbc.name
     JOIN misc mbc ON hbc.id = mbc.id
+    LEFT OUTER JOIN media_bampfa mb ON mc.id = mb.id
+    LEFT OUTER JOIN collectionspace_core csc ON mc.id = csc.id
   WHERE rc.objectdocumenttype = 'CollectionObject'
     AND rc.subjectdocumenttype = 'Media'
     AND mrc.lifecyclestate <> 'deleted'       -- exclude deleted relations
     AND mmc.lifecyclestate <> 'deleted'       -- exclude deleted media
     AND mbc.lifecyclestate <> 'deleted'       -- exclude deleted blobs
-),
-
-objectmediacounts AS (	-- get count of all non-deleted media by objectcsid
-  SELECT
-    objectcsid,
-    COUNT(*) AS imagecount
-  FROM objectmedia
-  GROUP BY objectcsid
-),
-
--- some objects have > 1 media records with imagenumber = 1
--- some objects have media records, and none have imagenumber = 1
--- media_common.datemodified and media_common.datecreated are all null
--- therefore, must use collectionspace_core.updatedat for media records
--- to get most recent media record with imagenumber = 1
-
-image1 AS (
-  SELECT DISTINCT ON (om.objectcsid)
-    om.objectcsid,
-    om.blobcsid AS image1blobcsid,
-    mb.websitedisplaylevel AS image1displevel
-  FROM objectmedia om
-  JOIN media_bampfa mb on om.mediaid = mb.id
-  JOIN collectionspace_core csc ON om.mediaid = csc.id
-  WHERE mb.imagenumber = 1
-  ORDER BY om.objectcsid, csc.updatedat DESC, om.blobcsid DESC	-- order by updatedat and blobcsid for tiebreaker
+  GROUP BY rc.objectcsid
 )
 
+-- final select for utils.bampfa_collectionitems_vw
+--
 SELECT
   co.objectcsid,
   co.idnumber,
   co.sortobjectnumber,
   con.numbervalue AS othernumber,
   GETDISPL(co.itemclass) AS itemclass,
-  COALESCE(NULLIF(co.artistdisplayoverride, ''), a.artistcalc) as artistcalc,
+  COALESCE(NULLIF(co.artistdisplayoverride, ''), a.artistcalc) AS artistcalc,
   fa.artistorigin,
   fa.artistbirthdate,
   fa.artistdeathdate,
@@ -238,9 +244,9 @@ SELECT
   ps.periodstyle4,
   ps.periodstyle5,
   GETDISPL(co.legalstatus) AS legalstatus,
-  COALESCE(omc.imagecount, 0) as imagecount,
-  i1.image1blobcsid,
-  i1.image1displevel,
+  COALESCE(om.imagecount, 0) AS imagecount,
+  om.image1blobcsid,
+  om.image1displevel,
   GETDISPL(co.acquisitionmethod) AS acquisitionmethod
 
 FROM collectionobjects co
@@ -261,15 +267,15 @@ FROM collectionobjects co
     AND hcvg.name = 'collectionobjects_bampfa:currentValueGroupList'
     AND hcvg.pos = 0
   LEFT OUTER JOIN currentvaluegroup cvg ON hcvg.id = cvg.id
-  LEFT OUTER JOIN hierarchy hcvdg	-- get first current value date
+  LEFT OUTER JOIN hierarchy hcvdg	-- get first current value date, all pos are null, and no parentid duplicates
     ON cvg.id = hcvdg.parentid
     AND hcvdg.name = 'currentValueDateGroup'
-  LEFT OUTER JOIN structuredDateGroup cvdg ON hcvdg.id = cvdg.id
+  LEFT OUTER JOIN structureddategroup cvdg ON hcvdg.id = cvdg.id
   LEFT OUTER JOIN hierarchy hpdg	-- get first production date
     ON co.id = hpdg.parentid
     AND hpdg.name = 'collectionobjects_common:objectProductionDateGroupList'
     AND hpdg.pos = 0
-  LEFT OUTER JOIN structuredDateGroup pdg ON hpdg.id = pdg.id
+  LEFT OUTER JOIN structureddategroup pdg ON hpdg.id = pdg.id
   LEFT OUTER JOIN hierarchy hmpg	-- get first measured part
     ON co.id = hmpg.parentid
     AND hmpg.name = 'collectionobjects_common:measuredPartGroupList'
@@ -279,7 +285,7 @@ FROM collectionobjects co
     ON co.id = hadg.parentid
     AND hadg.name = 'collectionobjects_bampfa:acquisitionDateGroupList'
     AND hadg.pos = 0
-  LEFT OUTER JOIN structuredDateGroup adg ON hadg.id = adg.id
+  LEFT OUTER JOIN structureddategroup adg ON hadg.id = adg.id
   LEFT OUTER JOIN hierarchy htig	-- get first signature
     ON co.id = htig.parentid
     AND htig.name = 'collectionobjects_common:textualInscriptionGroupList'
@@ -298,9 +304,23 @@ FROM collectionobjects co
   LEFT OUTER JOIN subjectthemes st ON co.id = st.id	-- get subjects
   LEFT OUTER JOIN collections c ON co.id = c.id	-- get collections
   LEFT OUTER JOIN periodstyles ps ON co.id = ps.id	-- get periodstyles
-  LEFT OUTER JOIN objectmediacounts omc ON co.objectcsid = omc.objectcsid	-- get image count
-  LEFT OUTER JOIN image1 i1 ON co.objectcsid = i1.objectcsid	-- get blobcsid, displevel for imagenumber 1
-  ORDER BY co.sortobjectnumber;
+  LEFT OUTER JOIN objectmedia om ON co.objectcsid = om.objectcsid;	-- get count for non-deleted media, and blobcsid, displevel for imagenumber 1
 
-GRANT SELECT ON utils.bampfa_collectionitems_vw TO reader_bampfa;
-GRANT SELECT ON utils.bampfa_collectionitems_vw TO group reporters_bampfa;
+-- change owner to nuxeo_bampfa
+--
+ALTER VIEW utils.bampfa_collectionitems_vw OWNER TO nuxeo_bampfa;
+
+-- check reader_bampfa and reporters_bampfa roles exist and grant privileges
+--
+DO $$
+DECLARE
+  r text;
+BEGIN
+  FOREACH r IN ARRAY ARRAY['reporters_bampfa', 'reader_bampfa'] LOOP
+    IF EXISTS (SELECT 1 FROM pg_catalog.pg_roles WHERE rolname = r) THEN
+      EXECUTE format('GRANT SELECT ON utils.bampfa_collectionitems_vw TO %I', r);
+    END IF;
+  END LOOP;
+END $$;
+
+COMMIT;
