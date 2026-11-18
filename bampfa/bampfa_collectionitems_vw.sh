@@ -14,7 +14,7 @@ CONTACT="${BAMPFA_CONTACT}"
 ##############################################################################
 #
 ##############################################################################
-time psql -R"@@" -A -U $USERNAME -d "$CONNECTSTRING"  -c "select * from utils.${TENANT}_collectionitems_vw" -o ${TENANT}_collectionitems_vw.tab
+time psql -R"@@" -A -U $USERNAME -d "$CONNECTSTRING"  -c "select * from utils.${TENANT}_collectionitems_vw order by sortobjectnumber" -o ${TENANT}_collectionitems_vw.tab
 # some fix up required, alas: data from cspace is dirty: contain csv delimiters, newlines, etc. that's why we used @@ as temporary record separator
 time perl -i -pe 's/[\r\n]/ /g;s/\@\@/\n/g;s/\|/\t/g;' ${TENANT}_collectionitems_vw.tab
 rm -f ${TENANT}_collectionitems_vw.tab.gz
