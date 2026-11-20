@@ -3,6 +3,9 @@
 This directory contains the components of the Solr system supporting
 the CSpace "Portals"
 
+For developers and ops: the [CollectionSpace hosting inventory](https://drive.google.com/file/d/1l4In1IwlmcXnb_7g05Sk5YJgMP3r6OQR/view) (PDF; UC Berkeley sign-in
+required) lists what runs today on the hosts of the ETL, Solr, the legacy webapps and Glimmer.
+
 There is one directory per UCB tenant, each directory contains the SQL and other
 magic to refresh that tenant's Solr cores.
 
