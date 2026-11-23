@@ -3,6 +3,58 @@ CHANGELOG for cspace-solr-ucb
 OK, it is not a *real* change log, but a list of changes resulting from git log
 sometimes with some human annotation after the fact.
 
+Next release (after 7.0.3; 7.1.0 proposed). Human annotation, to go under
+the release's "This is version" line when it is tagged.
+
+PAHMA, for Serena, the new ImageServer (CSW-1027)
+- PAHMA's public and internal cores gain one field, blobmedia_ss: one
+  "<blob CSID>:<media CSID>" value per Blob in blob_ss, card_ss,
+  primaryimage_s, video_csid_ss, audio_csid_ss and d3_csid_ss. No existing
+  field changes; Glimmer and other clients ignore the new one.
+- New: common/make-servable-list.sh (with make_servable_list.py) makes
+  Serena's servable list from a museum's live public core. PAHMA only.
+- New: the Serena step (common/serena-refresh.sh, serena_refresh.py), run
+  by oj.pahma.sh after PAHMA's public refresh. It hands the servable list
+  to Serena's ETL API. It runs only when SERENA_BASE_URL is set in the
+  pipeline config and ~/.serena/<tenant>.token exists (mode 600); otherwise
+  it skips. It never stops or delays the Solr refresh; on failure it mails
+  SERENA_CONTACT (SUPPORT_CONTACT when empty), never the museum's contact.
+  It sends a User-Agent, which Serena's firewall requires.
+- pipeline-config-*.sh gain SERENA_BASE_URL, SERENA_CONTACT and
+  SERENA_TOKEN_DIR. Set for QA only; empty for dev and prod, so in
+  production this release changes nothing for Serena until it is switched on.
+
+PAHMA
+- When an object's images are withheld, primaryimage_s is now the
+  placeholder image too, as blob_ss already was. Portals that show the
+  primary image will show the placeholder for these objects.
+
+BAMPFA
+- The BAM-view step (bampfa_collectionitems_vw.sh) is turned off: its query
+  hit the database's 60-minute timeout, mailed an empty extract each night
+  and delayed the rest of the run by an hour (issue #30).
+- Updated BAMPFA contacts (CSW-1031).
+
+Botanical Garden
+- The county/state/country files for the public extract are read from the
+  compressed copies the previous run saves (CSW-1012).
+
+UCJEPS
+- extract-soft-deletes.sh no longer runs in the nightly extract (CSW-812).
+
+Crontabs (CSW-1029)
+- crontab.app_cspace is renamed crontab.app_cspace.PROD, with a new
+  crontab.app_cspace.QA; crontab.app_solr and crontab.app_webapps are
+  removed (the accounts no longer exist). The PROD file now matches the
+  crontab installed in production (November 19, 2026), so installing it
+  changes nothing there.
+
+Development only (nothing deployed changes)
+- Golden-file tests for the ETL helpers, and a CI workflow running them
+  with ShellCheck.
+- docs/etl-aws-pilot-plan.md: a preliminary plan for a per-museum ETL on AWS.
+- README: a link to the CollectionSpace hosting inventory.
+
 This is version 7.0.3
 Wed Jun 17 10:56:20 PDT 2026
 
