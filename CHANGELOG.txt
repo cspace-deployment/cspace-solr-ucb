@@ -45,10 +45,9 @@ UCJEPS
 Crontabs (CSW-1029)
 - crontab.app_cspace is renamed crontab.app_cspace.PROD, with a new
   crontab.app_cspace.QA; crontab.app_solr and crontab.app_webapps are
-  removed (the accounts no longer exist). The PROD crontab adds a daily
-  Solr cache backup to S3 and comments out dbcleanup, analytics and the
-  monthly user list. A crontab file takes effect only when installed
-  with crontab(1).
+  removed (the accounts no longer exist). The PROD file now matches the
+  crontab installed in production (November 19, 2026), so installing it
+  changes nothing there.
 
 Development only (nothing deployed changes)
 - Golden-file tests for the ETL helpers, and a CI workflow running them
