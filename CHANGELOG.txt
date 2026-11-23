@@ -34,6 +34,13 @@ BAMPFA
   hit the database's 60-minute timeout, mailed an empty extract each night
   and delayed the rest of the run by an hour (issue #30).
 - Updated BAMPFA contacts (CSW-1031).
+- The BAM view (utils.bampfa_collectionitems_vw) is rewritten without the
+  old per-object functions; it runs in about 15 seconds instead of timing
+  out (CSW-1033). Changes in the extract: deleted media, relations, blobs
+  and artists are left out; image 1 is the most recently updated media
+  record numbered 1; artists whose stored name is out of date now show
+  their current name. The step stays off until Lyrasis applies the new
+  view in production (issue #30).
 
 Botanical Garden
 - The county/state/country files for the public extract are read from the
