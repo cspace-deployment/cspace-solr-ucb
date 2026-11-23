@@ -3,8 +3,8 @@ CHANGELOG for cspace-solr-ucb
 OK, it is not a *real* change log, but a list of changes resulting from git log
 sometimes with some human annotation after the fact.
 
-Next release (after 7.0.3; 7.1.0 proposed). Human annotation, to go under
-the release's "This is version" line when it is tagged.
+This is version 7.1.0-rc1
+Mon Nov 23 15:58:54 PST 2026
 
 PAHMA, for Serena, the new ImageServer (CSW-1027)
 - PAHMA's public and internal cores gain one field, blobmedia_ss: one
@@ -62,10 +62,44 @@ Development only (nothing deployed changes)
 - docs/etl-aws-pilot-plan.md: a preliminary plan for a per-museum ETL on AWS.
 - README: a link to the CollectionSpace hosting inventory.
 
-This is version 7.0.3
-Wed Jun 17 10:56:20 PDT 2026
-
-4541304 (HEAD -> main, tag: 7.0.3-rc2, origin/main, origin/HEAD) revise CHANGELOG.txt and bump version to 7.0.3-rc2
+4b70148 (HEAD -> main, origin/main, origin/HEAD) Merge pull request #32 from lkvoong/CSW-1033
+625de2d CSW-1033: CHANGELOG entry for the BAM view rewrite
+a3cf6bc Merge main into CSW-1033
+9cc91a6 Merge pull request #35 from cspace-deployment/docs/changelog-next-release
+444c193 CHANGELOG: the PROD crontab matches production's
+0452b1b CHANGELOG: notes for the next release
+427414f Merge pull request #34 from cspace-deployment/docs/hosting-inventory-link
+24d0bf2 README: link to the CollectionSpace hosting inventory
+e492cdf CSW-1033: add order by sortobjectnumber to bampfa_collectionitems_vw.sh
+1d545c3 CSW-1033: streamline artist and media CTEs
+4dd8ff5 CSW-1033: Revise bampfa_collectionitems_vw.sql to remove concat_artists fnc and exclude deleted blobs, relations
+3e593ce Merge pull request #33 from cspace-deployment/fix/bampfa-bam-view-off
+5c84458 Turn off BAMPFA's BAM-view step (issue #30)
+7016b6d CSW-1033: rewrite to remove calls to get_object_image_count, get_first_blobcsid_displevel
+2b814d1 Merge pull request #31 from cspace-deployment/fix/csw-1027-serena-user-agent
+46ab983 CSW-1027: send a User-Agent in the Serena step
+e843081 Merge pull request #29 from cspace-deployment/feature/csw-1027-serena-step
+996a614 CSW-1027: point QA's Serena step at Serena QA
+6bc34a4 CSW-1027: hand PAHMA's servable list to Serena after its Solr refresh
+4441f86 Merge pull request #28 from lkvoong/CSW-1031
+f36fc88 CSW-1031: Update BAMPFA contacts
+d85008c Merge pull request #27 from cspace-deployment/feature/pahma-primary-image-placeholder
+3259783 PAHMA: use the placeholder for the primary image when an object's images are withheld
+f941401 Merge pull request #25 from cspace-deployment/feature/csw-1027-pahma-blobmedia
+3170388 CSW-1027: add blobmedia_ss to PAHMA's cores and a servable list script
+23ff18e Merge pull request #24 from cspace-deployment/refactor/test-harness
+e4faa38 Merge pull request #22 from lkvoong/CSW-1029
+52881c8 Add golden-file tests for ETL transform helpers and CI workflow
+ab393b8 Merge pull request #23 from lkvoong/CSW-1030
+2ad6bd2 CSW-812: Update oj.ucjeps.sh to remove extract-soft-deletes.sh from nightly extract
+38bfa80 Merge pull request #21 from cspace-deployment/docs/etl-aws-pilot-plan
+b16f0d6 Add preliminary plan for per-museum ETL on AWS (PAHMA pilot)
+b7b3fd4 CSW-1029: rename PROD crontab and add QA crontab
+26aa957 CSW-1029: update crontab.app_cspace, rm app_solr, app_webapps as accts no longer exist
+610e50c Merge pull request #20 from lkvoong/CSW-1012
+8dd7f41 CSW-1012: uncompress county/state/country files for public Solr extract
+81e454e (tag: 7.0.3) revise CHANGELOG.txt and bump version to 7.0.3
+4541304 (tag: 7.0.3-rc2) revise CHANGELOG.txt and bump version to 7.0.3-rc2
 968a680 Merge pull request #19 from lkvoong/CSW-998
 0fdc5d4 CSW-998: update solr queries and bampfa_collectionitems_vw for consistency and efficiency
 1b5f350 (tag: 7.0.3-rc1) revise CHANGELOG.txt and bump version to 7.0.3-rc1
