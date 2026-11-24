@@ -198,6 +198,64 @@ which work just like the config for the rest of the pipelines: just copy
 the right version of the file into home directory (from repo
 `cspace-solr-ucb/cinefiles`).
 
+#### Serena token file (PAHMA, CSW-1027)
+
+After PAHMA's public refresh, `oj.pahma.sh` runs `common/serena-refresh.sh`, which hands PAHMA's
+servable list to Serena, the new ImageServer. It runs only when all three are true; otherwise it logs
+`Serena pahma: skipped (...)` and exits without error:
+
+* `SERENA_BASE_URL` is set in `pipeline-config.sh` (it is empty in `pipeline-config-prod.sh` until
+  Serena production is ready; setting it is a change to the repo and a new release, since
+  `redeploy-etl.sh` overwrites `~/pipeline-config.sh`)
+* `SERENA_TOKEN_DIR` is set (`${HOME}/.serena` in every `pipeline-config-*.sh`; nothing to change)
+* the token file `${SERENA_TOKEN_DIR}/pahma.token` exists
+
+The token is a secret. It is never put in the repo, in `pipeline-config.sh`, in a command line, an
+email or a chat. Serena's team makes it (`./serena aws etl-token pahma --show`) and hands it over
+with a one-time secret link, or reads it to you on a call.
+
+Installing it, as the ETL user (`app_cspace`) on the ETL server:
+
+```
+cd
+mkdir -p ~/.serena
+chmod 700 ~/.serena
+(umask 077; cat > ~/.serena/pahma.token)
+```
+
+Paste the token, press Return, then Ctrl-D (this keeps it out of the shell history). Then check:
+
+```
+chmod 600 ~/.serena/pahma.token
+ls -l ~/.serena
+```
+
+Expected: one line, `-rw-------  1 app_cspace ...  pahma.token`, and a size of about the token's
+length. Don't `cat` the file to check it.
+
+`redeploy-etl.sh` doesn't touch `~/.serena`, so the token survives redeploys.
+
+Checking it worked, after the next nightly run:
+
+```
+grep 'Serena pahma' /cspace/solr_logs/pahma.serena.log | tail -3
+```
+
+(`/cspace/solr_logs` is `SOLR_LOG_DIR` for `app_cspace`, set by `set_platform.sh`.)
+
+Expected: no `skipped` line for that night, and no failure email to `SERENA_CONTACT`. Serena's
+admin app shows PAHMA's refresh.
+
+Rotating the token: Serena's team runs `./serena aws etl-token pahma --show`; the old token keeps
+working until the next rotation. Replace the file's contents the same way (the `cat >` line
+overwrites it).
+
+Removing it (stops the Serena step at once): `rm ~/.serena/pahma.token`.
+
+The token file is the only way the ETL reads its token today. Reading it from AWS Secrets Manager
+with the server's instance role (Serena's `ETL_READER_ROLE_ARNS`) would need a change to
+`common/serena_refresh.py` first.
+
 #### Installing solr8 as a service on UCB VMs
 
 Check with Ops
