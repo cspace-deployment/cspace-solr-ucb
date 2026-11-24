@@ -3,8 +3,17 @@ CHANGELOG for cspace-solr-ucb
 OK, it is not a *real* change log, but a list of changes resulting from git log
 sometimes with some human annotation after the fact.
 
-This is version 7.1.0-rc1
-Mon Nov 23 15:58:54 PST 2026
+This is version 7.1.0-rc2
+Tue Nov 24 11:28:54 PST 2026
+
+Since 7.1.0-rc1
+- pipeline-config-prod.sh: SERENA_BASE_URL is now Serena production
+  (https://mediaserver.cspace.berkeley.edu). Serena stays off in production
+  after this deploy: the step skips until PAHMA's token file is installed.
+  Install the token only once that address answers (DNS is still pending);
+  a token installed earlier makes the step fail each night and mail
+  SERENA_CONTACT. Solr's refresh is not affected either way.
+- utilities/README.md: how to install the Serena token file.
 
 PAHMA, for Serena, the new ImageServer (CSW-1027)
 - PAHMA's public and internal cores gain one field, blobmedia_ss: one
@@ -21,8 +30,8 @@ PAHMA, for Serena, the new ImageServer (CSW-1027)
   SERENA_CONTACT (SUPPORT_CONTACT when empty), never the museum's contact.
   It sends a User-Agent, which Serena's firewall requires.
 - pipeline-config-*.sh gain SERENA_BASE_URL, SERENA_CONTACT and
-  SERENA_TOKEN_DIR. Set for QA only; empty for dev and prod, so in
-  production this release changes nothing for Serena until it is switched on.
+  SERENA_TOKEN_DIR. Set for QA and prod; empty for dev. In production the
+  step stays off until PAHMA's token file is installed (see above).
 
 PAHMA
 - When an object's images are withheld, primaryimage_s is now the
