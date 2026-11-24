@@ -207,7 +207,9 @@ servable list to Serena, the new ImageServer. It runs only when all three are tr
 * `SERENA_BASE_URL` is set in `pipeline-config.sh` (set in `pipeline-config-qa.sh` and
   `pipeline-config-prod.sh`, empty in `pipeline-config-dev.sh`; changing it is a change to the repo
   and a new release, since `redeploy-etl.sh` overwrites `~/pipeline-config.sh`). In production the
-  token file is what switches the step on: until it is installed, the step skips.
+  token file is what switches the step on: until it is installed, the step skips. Install it only
+  once Serena production answers at `SERENA_BASE_URL` (its DNS may not be live yet); a token
+  installed earlier makes the step fail each night and mail `SERENA_CONTACT`.
 * `SERENA_TOKEN_DIR` is set (`${HOME}/.serena` in every `pipeline-config-*.sh`; nothing to change)
 * the token file `${SERENA_TOKEN_DIR}/pahma.token` exists
 
