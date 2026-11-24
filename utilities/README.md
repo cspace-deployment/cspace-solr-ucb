@@ -204,9 +204,10 @@ After PAHMA's public refresh, `oj.pahma.sh` runs `common/serena-refresh.sh`, whi
 servable list to Serena, the new ImageServer. It runs only when all three are true; otherwise it logs
 `Serena pahma: skipped (...)` and exits without error:
 
-* `SERENA_BASE_URL` is set in `pipeline-config.sh` (it is empty in `pipeline-config-prod.sh` until
-  Serena production is ready; setting it is a change to the repo and a new release, since
-  `redeploy-etl.sh` overwrites `~/pipeline-config.sh`)
+* `SERENA_BASE_URL` is set in `pipeline-config.sh` (set in `pipeline-config-qa.sh` and
+  `pipeline-config-prod.sh`, empty in `pipeline-config-dev.sh`; changing it is a change to the repo
+  and a new release, since `redeploy-etl.sh` overwrites `~/pipeline-config.sh`). In production the
+  token file is what switches the step on: until it is installed, the step skips.
 * `SERENA_TOKEN_DIR` is set (`${HOME}/.serena` in every `pipeline-config-*.sh`; nothing to change)
 * the token file `${SERENA_TOKEN_DIR}/pahma.token` exists
 

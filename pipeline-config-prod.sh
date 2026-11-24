@@ -28,7 +28,9 @@ export SUPPORT_CONTACT="cspace-support@lists.berkeley.edu"
 # outside the repository, owned by the app user, mode 600 (like .pgpass). Never put a token in this file.
 # SERENA_CONTACT: the addresses mailed when a Serena step fails (the ETL team); SUPPORT_CONTACT when empty.
 # Museum contacts are never mailed about the Serena step.
-export SERENA_BASE_URL=""
+# Production: Serena production, connected to PAHMA's production CollectionSpace. Only museums with a token file
+# take part, so the step skips until PAHMA's token file is installed at go-live.
+export SERENA_BASE_URL="https://mediaserver.cspace.berkeley.edu"
 export SERENA_CONTACT=""
 export SERENA_TOKEN_DIR="${HOME}/.serena"
 
